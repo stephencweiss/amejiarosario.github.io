@@ -9,10 +9,10 @@
     <meta name="description" content="JavaScript tutorials and web development articles including topics like NodeJS, Angular, VueJS, Data Structures and Algorithms.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <link rel="alternative" href="/atom.xml" title="Adrian Mejia | JavaScript, Algorithms and Web development Tutorials" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Adrian Mejia Blog" type="application/atom+xml">
 
     
-    <title>Backbone.js for Absolute Beginners - Getting started (Part 1: Intro) | Adrian Mejia | JavaScript, Algorithms and Web development Tutorials</title>
+    <title>Backbone.js for Absolute Beginners - Getting started (Part 1: Intro) | Adrian Mejia Blog</title>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -40,7 +40,7 @@
     <link rel="canonical" href="https://adrianmejia.com/backbone-dot-js-for-absolute-beginners-getting-started/">
     <!-- Open Graph -->
     <meta property="og:url" content="https://adrianmejia.com/backbone-dot-js-for-absolute-beginners-getting-started/">
-    <meta property="og:site_name" content="Adrian Mejia | JavaScript, Algorithms and Web development Tutorials">
+    <meta property="og:site_name" content="Adrian Mejia Blog">
     <meta property="og:type" content="article">
     <meta property="og:description" content="Backbone.js is a JavaScript library, among many others, that is gaining special attention in the web development community because it’s ease of use and the structure that it provides to JavaScript applications.
 Notice that BackboneJS is not a framework but a library. The difference is who is in control. Using a library YOU are in control, but using a framework there is an inversion of control: the framework calls you. Libraries give you a lot of flexibility, while frameworks has opinionated ways of doing things but can save you writing boiler plate code. Follow my AngularJS tutorial series for a framework solution.
@@ -107,7 +107,7 @@ ga('send', 'pageview');
               
                 <a href="/#about" class="animation--radial-out" id="About" onclick="track('/#about', 'menu', true)">About</a>
               
-                <a href="/blog" class="animation--radial-out" id="Blog" onclick="track('/blog', 'menu', true)">Blog</a>
+                <a href="/blog/" class="animation--radial-out" id="Blog" onclick="track('/blog/', 'menu', true)">Blog</a>
               
             </nav>
 
@@ -237,7 +237,7 @@ ga('send', 'pageview');
         
           <a href="/#about" class="animation--underline-from-center">About</a>
         
-          <a href="/blog" class="animation--underline-from-center">Blog</a>
+          <a href="/blog/" class="animation--underline-from-center">Blog</a>
         
       </div>
     </nav>
@@ -351,7 +351,7 @@ Let’s dive into BackboneJS! and see how this flexible library can bring order 
 </ol>
 <h1 id="Brief-Background">Brief Background<a href="#Brief-Background" class="headerlink" title="Brief Background"></a></h1><p><a href="#start">TL; DR</a>: You need to use JavaScript heavily in order to make responsive and interactive web applications. <a href="#start">Jump to this and get started.</a></p>
 <p>The web application development process has been evolving over the years. In the beginning web applications were just static HTML pages, which required programmers to change the code (HTML, CSS, JS) in order to change the content. Later, in web 2.0, server side programming languages (like PHP, Ruby, Java, …) were added to generate HTML pages dynamically based on user input and data stored in database. That was a huge improvement, and most of the pages served today use this approach. However, to provide the web site with even more responsiveness, speed, and enhanced user interaction, it requires bringing the logic closer to the client (browser).  There are a couple of languages that can run in the browsers besides JS, such as Java, Flash and others. However, these require extra plugins and are not as ubiquitous as JavaScript.</p>
-<p>Web applications nowadays require heavy use of JavaScript to generate content on the fly. The user needn’t wait between requests and page refreshes. A lot of the logic/code that used to be on the server side is being moved to the client side. JS allows web sites to render only content that changes without needing to reload the full-page on every request. Examples of this kind of web applicqtion are Gmail, Pandora, Pinterest, Nokia Maps 3D and others.</p>
+<p>Web applications nowadays require heavy use of JavaScript to generate content on the fly. The user needn’t wait between requests and page refreshes. A lot of the logic/code that used to be on the server side is being moved to the client side. JS allows web sites to render only content that changes without needing to reload the full-page on every request. Examples of this kind of web application are Gmail, Pandora, Pinterest, Nokia Maps 3D and others.</p>
 <p>A common problem with large JS web application developed is that they can become pretty messy really quickly. The lack of structure makes the code hard to maintain. This is where Backbone comes into play. It provides structure to organize the code and increase maintainability. Backbone is not the only framework like this; in fact, there are many JS frameworks that attempt to offer similar benefits, like Ember.js, Angular.js and so on. However, I choose Backbone because it’s one of the most widely used frameworks in its category. It has a vibrant community and it’s also being fully used in production for a considerable number of big companies like: Wal-Mart mobile, Groupon, Khan Academy, Pandora, Wordpress, Foursquare, and so on.</p>
 <p><a id="start"></a></p>
 <h1 id="BackboneJS-Overview">BackboneJS Overview<a href="#BackboneJS-Overview" class="headerlink" title="BackboneJS Overview"></a></h1><p><strong>Just enough to get started with Backbone.js</strong></p>
@@ -490,12 +490,13 @@ Let’s dive into BackboneJS! and see how this flexible library can bring order 
           <b>About the author</b>
           
               <!-- Adrian Mejia Bio -->
-            <section class="bio-box">
+            
+<section class="bio-box">
   <img class="m-a-1 not-scaled" src="/images/adrian-mejia-headshot.png" alt="Adrian Mejia">
   <article class="p-x-1" style="display: flex; flex-direction:column;">
     <p class="muted">Adrian Mejia is a full-stack web developer located in Boston.
       Currently working at Cisco as a Software Engineer.
-      Adrian enjoys writing posts about programming and technology.
+      Adrian enjoys writing posts about JavaScript, Node.js, WebDev, Algorithms, Startups.
       Also, he likes to travel ✈️ and biking 🚴‍.
       <!-- Find out more <a href="/#about">here</a>. -->
     </p>
@@ -697,12 +698,17 @@ Let’s dive into BackboneJS! and see how this flexible library can bring order 
 
     </main>
 
+    <!-- uxa -->
+    <img src="//data.uxeranalytics.com/image1.png?uxa=blog" id="pxl1">
+    <script async defer src="//data.uxeranalytics.com/uxa.js"></script>
+    <!-- /uxa -->
+
     <footer class="page-footer">
       <div class="container">
         <div class="p-y-2">
           &copy; 2019 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Sat Jun 15 2019 15:23:50 GMT-0400 (Eastern Daylight Time)">
-            v.pt5n7q
+          <span class="muted m-x-4" title="Tue Nov 05 2019 12:06:25 GMT-0500 (Eastern Standard Time)">
+            v.q0ia6p
           </span>
         </div>
       </div>
