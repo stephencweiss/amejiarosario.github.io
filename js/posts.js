@@ -166,3 +166,34 @@ function scrollBy(baseY, duration) {
   }
   window.requestAnimationFrame(step);
 }
+
+// copy to clipboard
+(function copyToClipboardMain() {
+  // $$('.highlight').prepend((b = document.createElement('button'), b.classList.add('copy-btn'), b))
+  var blocks = document.getElementsByClassName("highlight");
+  var copyToClipboard = function (e) {
+    var parent = e.target.parentElement;
+    var text = parent.querySelector(".code").innerText;
+
+    // https://github.com/theme-next/hexo-theme-next/pull/234/files
+    var ta = document.createElement("textarea");
+    document.body.appendChild(ta);
+    ta.style.position = "fixed";
+    ta.style.top = 0;
+    ta.style.left = 0;
+    ta.value = text;
+    ta.select();
+    ta.focus();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+
+    e.target.classList.add("checkMark");
+  };
+
+  Array.from(blocks).forEach(function (block) {
+    var button = document.createElement("button");
+    button.classList.add("copy-btn");
+    block.prepend(button);
+    button.addEventListener("click", copyToClipboard);
+  });
+})();
