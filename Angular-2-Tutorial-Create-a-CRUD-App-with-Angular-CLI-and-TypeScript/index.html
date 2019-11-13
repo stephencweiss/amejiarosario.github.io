@@ -585,6 +585,7 @@ Add <code>(click)=&quot;toggleTodo(todo)&quot;</code> to the checkbox element.</
 <figure class="highlight js"><figcaption><span>src/app/todo/todo.service.ts:62</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">toggle(selected) &#123;</span><br><span class="line">  selected.isDone = !selected.isDone;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.resolve();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>We are returning a promise, in case we later want to replace the in-memory array for a API call or external storage.</p>
+<p><a target="_blank" href="https://github.com/amejiarosario/angular-todo-app/commit/0affc59">[changes diff]</a></p>
 <h1 id="Deploying-the-app">Deploying the app<a href="#Deploying-the-app" class="headerlink" title="Deploying the app"></a></h1><p>You can generate all your assets for production running this command:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ng build --prod</span><br></pre></td></tr></table></figure>
 
@@ -844,8 +845,8 @@ You can fix that by making all the variables that are used on the template <code
       <div class="container">
         <div class="p-y-2">
           &copy; 2019 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Wed Nov 13 2019 16:26:06 GMT-0500 (Eastern Standard Time)">
-            v.q0xfji
+          <span class="muted m-x-4" title="Wed Nov 13 2019 16:41:41 GMT-0500 (Eastern Standard Time)">
+            v.q0xg9h
           </span>
         </div>
       </div>
