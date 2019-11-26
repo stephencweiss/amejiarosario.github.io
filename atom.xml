@@ -2597,7 +2597,7 @@ With this function, we get if two nodes are connected or not. However, they don'
     <link href="https://adrianmejia.com/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/"/>
     <id>https://adrianmejia.com/Data-Structures-Time-Complexity-for-Beginners-Arrays-HashMaps-Linked-Lists-Stacks-Queues-tutorial/</id>
     <published>2018-04-28T23:20:40.000Z</published>
-    <updated>2019-04-22T19:49:40.000Z</updated>
+    <updated>2019-11-26T01:17:40.000Z</updated>
     
     <content type="html"><![CDATA[<p>When we are developing software, we have to store data in memory. However, there are many types of data structures, such as arrays, maps, sets, lists, trees, graphs, etc. and choosing the right one for the task can be tricky. So, this series of posts will help you to know the trade-offs, so, you can use the right tool for the job!</p>
 <a id="more"></a>
@@ -3188,7 +3188,7 @@ Yay!!! 🎉 we have a much better hash function!</p>
 <p>When we have a chain of nodes where each one points to the next one we a <strong>Singly Linked list</strong>.</p>
 <h2 id="Singly-Linked-Lists">Singly Linked Lists<a href="#Singly-Linked-Lists" class="headerlink" title="Singly Linked Lists"></a></h2><p>For a singly linked list, we only have to worry about every element having a reference to the next one.</p>
 <p>We start by constructing the root or head element.</p>
-<figure class="highlight js"><figcaption><span>linked-list.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>linked-list.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>() &#123;</span><br><span class="line">    <span class="keyword">this</span>.root = <span class="literal">null</span>; <span class="comment">// first/head/root element</span></span><br><span class="line">    <span class="keyword">this</span>.size = <span class="number">0</span>; <span class="comment">// total number of elements in the list</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>There are 4 basic operations that we can do in every Linked List:</p>
 <ol>
@@ -3573,7 +3573,6 @@ https://adrianmejia.com/blog/2018/04/28/data-structures-time-complexity-for-begi
 
 https://www.yuque.com/ruanyf/share/issue-10
 -->
-
 ]]></content>
     
     <summary type="html">
