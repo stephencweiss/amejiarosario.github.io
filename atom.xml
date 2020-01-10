@@ -1119,14 +1119,14 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <p>Try to interact with it. You cannot create a new Todos, nor can you delete them or edit them. We are going to implement that!</p>
 <p>Open your favorite code editor (I recommend <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Code</a>) on <code>vue-todo-app</code> directory.</p>
 <h2 id="Package-json">Package.json<a href="#Package-json" class="headerlink" title="Package.json"></a></h2><p>Take a look at the <code>package.json</code> dependencies:</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"todomvc-app-css"</span>: <span class="string">"2.1.2"</span>,</span><br><span class="line">  <span class="string">"vue"</span>: <span class="string">"2.5.17"</span>,</span><br><span class="line">  <span class="string">"vue-router"</span>: <span class="string">"3.0.1"</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"live-server"</span>: <span class="string">"1.2.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>package.json (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"dependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"todomvc-app-css"</span>: <span class="string">"2.1.2"</span>,</span><br><span class="line">  <span class="string">"vue"</span>: <span class="string">"2.5.17"</span>,</span><br><span class="line">  <span class="string">"vue-router"</span>: <span class="string">"3.0.1"</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">  <span class="string">"live-server"</span>: <span class="string">"1.2.0"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>We installed <code>Vue</code> and <code>VueRouter</code> dependencies. Also, we have the nice CSS library for Todo apps and <code>live-server</code> to serve and reload the page when we make changes. That’s all we would need for this tutorial.</p>
 <h2 id="index-html">index.html<a href="#index-html" class="headerlink" title="index.html"></a></h2><p>Open the <code>index.html</code> file.  There we have the basic HTML structure for the Todo app that we are going to build upon:</p>
 <ul>
 <li>Line 9: Loads the CSS from NPM module <code>node_modules/todomvc-app-css/index.css</code>.</li>
-<li>Line 23: We have the <code>ul</code> and some hard-coded todo lists. We are going to change this in a bit.</li>
-<li>Line 73: we have multiple script files that load Vue, VueRouter and an empty <code>app.js</code>.</li>
+<li>Line 24: We have the <code>ul</code> and some hard-coded todo lists. We are going to change this in a bit.</li>
+<li>Line 75: we have multiple script files that load Vue, VueRouter and an empty <code>app.js</code>.</li>
 </ul>
 <p>Now, you know the basic structure where we are going to work on. Let’s get started with Vue! 🖖</p>
 <h1 id="Getting-started-with-Vue">Getting started with Vue<a href="#Getting-started-with-Vue" class="headerlink" title="Getting started with Vue"></a></h1><p>As you might know…</p>
@@ -1137,24 +1137,28 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <h2 id="Vue-Data-amp-v-text">Vue Data &amp; v-text<a href="#Vue-Data-amp-v-text" class="headerlink" title="Vue Data &amp; v-text"></a></h2><p>Go to <code>app.js</code> and type the following:</p>
 <figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todoApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'.todoapp'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">'Hello Vue!'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>The <code>el</code> is the element where Vue is going to be mounted. If you notice in the <code>index.html</code> that’s the section part. The <code>data</code> object is reactive. It keeps track of changes and re-render the DOM if needed. Go to the index page and change <code>&lt;h1&gt;todos&lt;/h1&gt;</code> for <code>&lt;h1&gt;{{ title }}&lt;/h1&gt;</code>. The rest remains the same:</p>
-<figure class="highlight js"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;section <span class="class"><span class="keyword">class</span></span>=<span class="string">"todoapp"</span>&gt;</span><br><span class="line">  &lt;header <span class="class"><span class="keyword">class</span></span>=<span class="string">"header"</span>&gt;</span><br><span class="line marked">    &lt;h1&gt;&#123;&#123; title &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input class="new-todo" placeholder="What needs to be done?" autofocus&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>header&gt;</span><br><span class="line">  &lt;!--  ...  --&gt;</span><br></pre></td></tr></table></figure>
+<p>Notice the 2nd line with <code>el: &#39;.todoapp&#39;</code>. The <code>el</code> is the element where Vue is going to be mounted.</p>
+<p>If you notice in the <code>index.html</code> that’s the section part. As shown in the fragment below.</p>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"todoapp"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Going back to the <code>app.js</code> file, let’s now take a look into the <code>data</code> attribute, that binds the title. The <code>data</code> object is reactive. It keeps track of changes and re-render the DOM if needed. Go to the index.html page and change <code>&lt;h1&gt;todos&lt;/h1&gt;</code> for <code>&lt;h1&gt;{{ title }}&lt;/h1&gt;</code>. The rest remains the same:</p>
+<figure class="highlight js"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;section <span class="class"><span class="keyword">class</span></span>=<span class="string">"todoapp"</span>&gt;</span><br><span class="line">  &lt;header <span class="class"><span class="keyword">class</span></span>=<span class="string">"header"</span>&gt;</span><br><span class="line marked">    &lt;h1&gt;&#123;&#123; title &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input class="new-todo" placeholder="What needs to be done?" autofocus&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>header&gt;</span><br><span class="line">  &lt;!--  ...  --&gt;</span><br></pre></td></tr></table></figure>
 
 <p>If you have <code>npm start</code> running you will see that the title changed!</p>
 <p>You can also go to the console and change it <code>todoApp.title = &quot;Bucket List&quot;</code> and see that it updates the DOM.</p>
 <p><img src="/images/vue-reactive.gif" alt="vue"></p>
 <p>Note: besides the curly braces you can also use <code>v-text</code>:</p>
-<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-text</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-text</span>=<span class="string">"title"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>Let’s do something useful and put an initial todo list:</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todoApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'.todoapp'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">'Todos'</span>,</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'Learn JavaScript ES6+ goodies'</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'Learn Vue'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'Build something awesome'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Let’s go back to <code>app.js</code> and do something useful inside the <code>data</code> object. Let’s put an initial todo list:</p>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todoApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'.todoapp'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    title: <span class="string">'Todos'</span>,</span><br><span class="line">    todos: [</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'Learn JavaScript ES6+ goodies'</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'Learn Vue'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">text</span>: <span class="string">'Build something awesome'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>Now that we have the list we need to replace the <code>&lt;li&gt;</code> elements with each of the elements in the <code>data.todos</code> array.</p>
+<p>Now that we have the list on the data, we need to replace the <code>&lt;li&gt;</code> elements in <code>index.html</code> with each of the elements in the <code>data.todos</code> array.</p>
 <p>Let’s do the CRUD (Create-Read-Update-Delete) of a Todo application.</p>
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/2d1f2e5" target="_blank" rel="noopener">review diff</a></p>
 <h2 id="READ-List-rendering-with-v-for">READ: List rendering with <code>v-for</code><a href="#READ-List-rendering-with-v-for" class="headerlink" title="READ: List rendering with v-for"></a></h2><p>As you can see everything starting with <code>v-</code> is defined by the Vue library.</p>
 <p>We can iterate through elements using <code>v-for</code> as follows:</p>
-<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"toggle"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;todo.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span> <span class="attr">value</span>=<span class="string">"Rule the web"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"toggle"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;todo.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span> <span class="attr">value</span>=<span class="string">"Rule the web"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>You can remove the other <code>&lt;li&gt;</code> tag that was just a placeholder.</p>
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/3dc4871" target="_blank" rel="noopener">review diff</a></p>
@@ -1168,15 +1172,15 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 </ul>
 <p><strong>Protip</strong>: since <code>v-on:</code> is used a lot, there’s a shortcut <code>@</code>. E.g. Instead of <code>v-on:keyup.enter</code> it can be <code>@keyup.enter</code>.</p>
 <p>Let’s use the <code>keyup.enter</code> to create a todo:</p>
-<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"new-todo"</span> <span class="attr">placeholder</span>=<span class="string">"What needs to be done?"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-on:keyup.enter</span>=<span class="string">"createTodo"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">autofocus</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"new-todo"</span> <span class="attr">placeholder</span>=<span class="string">"What needs to be done?"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-on:keyup.enter</span>=<span class="string">"createTodo"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">autofocus</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>On <code>enter</code> we are calling <code>createTodo</code> method, but it’s not defined yet. Let’s define it on <code>app.js</code> as follows:</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  createTodo(event) &#123;</span><br><span class="line">    <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">    <span class="keyword">this</span>.todos.push(&#123; <span class="attr">text</span>: textbox.value, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">    textbox.value = <span class="string">''</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  createTodo(event) &#123;</span><br><span class="line">    <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">    <span class="keyword">this</span>.todos.push(&#123; <span class="attr">text</span>: textbox.value, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">    textbox.value = <span class="string">''</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/fcd305c" target="_blank" rel="noopener">review diff</a></p>
 <h2 id="Applying-classes-dynamically-amp-Vue-v-bind">Applying classes dynamically &amp; Vue <code>v-bind</code><a href="#Applying-classes-dynamically-amp-Vue-v-bind" class="headerlink" title="Applying classes dynamically &amp; Vue v-bind"></a></h2><p>If you click the checkbox (or checkcirlcle) we would like the class <code>completed</code> to be applied to the element. We can accomplish this by using the <code>v-bind</code> directive.</p>
 <p><code>v-bind</code> can be applied to any HTML attribute such as <code>class</code>, <code>title</code> and so forth. Since <code>v-bind</code> is used a lot we can have a shortcut <code>:</code>, so instead of <code>v-bind:class</code> it becomes <code>:class</code>.</p>
-<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span> <span class="attr">:class</span>=<span class="string">"&#123; completed: todo.isDone &#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span> <span class="attr">:class</span>=<span class="string">"&#123; completed: todo.isDone &#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>Now if a Todo list is completed, it will become cross out. However, if we click on the checkbox, it doesn’t update the <code>isDone</code> property.  Let’s fix that next.</p>
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/2145c36" target="_blank" rel="noopener">review diff</a></p>
@@ -1189,7 +1193,7 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 
 <p>You should see the update. Cool!</p>
 <h2 id="UPDATE-todo-list-with-a-double-click">UPDATE todo list with a double-click<a href="#UPDATE-todo-list-with-a-double-click" class="headerlink" title="UPDATE todo list with a double-click"></a></h2><p>We want to double click on any list and that it automatically becomes a checkbox. We have some CSS magic to do that, the only thing we need to do is to apply the <code>editing</code> class.</p>
-<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- List items should get the class `editing` when editing and `completed` when marked as completed --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span> <span class="attr">:class</span>=<span class="string">"&#123; completed: todo.isDone &#125;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"toggle"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"todo.isDone"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;todo.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span> <span class="attr">value</span>=<span class="string">"Rule the web"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- List items should get the class `editing` when editing and `completed` when marked as completed --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span> <span class="attr">:class</span>=<span class="string">"&#123; completed: todo.isDone &#125;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"toggle"</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">v-model</span>=<span class="string">"todo.isDone"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span>&#123;&#123;todo.text&#125;&#125;<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span> <span class="attr">value</span>=<span class="string">"Rule the web"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>Similar to what we did with the <code>completed</code> class, we need to add a condition when we start editing.</p>
 <p>Starting with the label, we want to start editing when we double-click on it. Vue provides <code>v-on:dblclick</code> or shorthand <code>@dblclick</code>:</p>
@@ -1200,11 +1204,11 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 
 <p>We created a new variable <code>editing</code> in data. We just set whatever todo we are currently editing. We want only to edit one at a time, so this works perfectly. When you double-click the label, the <code>startEditing</code> function is called and set the <code>editing</code> variable to the current todo element.</p>
 <p>Next, we need to apply the <code>editing</code> class:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span> <span class="attr">:class</span>=<span class="string">"&#123; completed: todo.isDone, editing: todo === editing &#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"todo in todos"</span> <span class="attr">:class</span>=<span class="string">"&#123; completed: todo.isDone, editing: todo === editing &#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>When <code>data.editing</code> matches the <code>todo</code> , then we apply the CSS class. Try it out!</p>
 <p>If you try it out, you will notice you can enter on edit mode, but there’s no way to exit from it (yet). Let’s fix that.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.esc</span>=<span class="string">"cancelEditing"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.enter</span>=<span class="string">"finishEditing"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">blur</span>=<span class="string">"finishEditing"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:value</span>=<span class="string">"todo.text"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">"edit"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.esc</span>=<span class="string">"cancelEditing"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keyup.enter</span>=<span class="string">"finishEditing"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">blur</span>=<span class="string">"finishEditing"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:value</span>=<span class="string">"todo.text"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>First, we want the input textbox to have the <code>value</code> of the <code>todo.text</code> when we enter to the editing mode. We can accomplish this using <code>:value=&quot;todo.text&quot;</code>. Remember that colon <code>:</code> is a shorthand for <code>v-bind</code>.</p>
 <p>Before, we implemented the <code>startEditing</code> function. Now, we need to complete the edit functionality with these two more methods:</p>
@@ -1213,28 +1217,28 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <li><code>cancelEditing</code>: discard the changes and leave <code>todos</code> list untouched. This happens when you press the <kbd>esc</kbd> key.</li>
 </ul>
 <p>Let’s go to the <code>app.js</code> and define these two functions.</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">finishEditing(event) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.editing) &#123; <span class="keyword">return</span>; &#125;</span><br><span class="line">  <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">  <span class="keyword">this</span>.editing.text = textbox.value;</span><br><span class="line">  <span class="keyword">this</span>.editing = <span class="literal">null</span>;</span><br><span class="line">&#125;,</span><br><span class="line">cancelEditing() &#123;</span><br><span class="line">  <span class="keyword">this</span>.editing = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">finishEditing(event) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.editing) &#123; <span class="keyword">return</span>; &#125;</span><br><span class="line">  <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">  <span class="keyword">this</span>.editing.text = textbox.value;</span><br><span class="line">  <span class="keyword">this</span>.editing = <span class="literal">null</span>;</span><br><span class="line">&#125;,</span><br><span class="line">cancelEditing() &#123;</span><br><span class="line">  <span class="keyword">this</span>.editing = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Cancel is pretty straightforward. It just set editing to null.</p>
 <p><code>finishEditing</code> will take the input current’s value (event.target.value) and copy over the todo element that is currently being edited. That’s it!</p>
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/4af7d31" target="_blank" rel="noopener">review diff</a></p>
 <h2 id="DELETE-todo-list-on-click-event">DELETE todo list on @click event<a href="#DELETE-todo-list-on-click-event" class="headerlink" title="DELETE todo list on @click event"></a></h2><p>Finally, the last step to complete the CRUD operations is deleting. We are going to listen for click events on the destroy icon:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span> @<span class="attr">click</span>=<span class="string">"destroyTodo(todo)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"destroy"</span> @<span class="attr">click</span>=<span class="string">"destroyTodo(todo)"</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>also, <code>destroyTodo</code> implementation is as follows:</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">destroyTodo(todo) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = <span class="keyword">this</span>.todos.indexOf(todo);</span><br><span class="line">  <span class="keyword">this</span>.todos.splice(index, <span class="number">1</span>);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">destroyTodo(todo) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = <span class="keyword">this</span>.todos.indexOf(todo);</span><br><span class="line">  <span class="keyword">this</span>.todos.splice(index, <span class="number">1</span>);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/a73e058" target="_blank" rel="noopener">review diff</a></p>
 <h2 id="Trimming-inputs">Trimming inputs<a href="#Trimming-inputs" class="headerlink" title="Trimming inputs"></a></h2><p>It’s always a good idea to <code>trim</code> user inputs, so any accidental whitespace doesn’t get in the way with <code>textbox.value.trim()</code>.</p>
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/45b4eed44abd9a4cfec3b3977b61fe7031ff6c4e" target="_blank" rel="noopener">review diff</a></p>
 <h2 id="Items-left-count-with-computed-properties">Items left count with  <code>computed</code> properties<a href="#Items-left-count-with-computed-properties" class="headerlink" title="Items left count with  computed properties"></a></h2><p>Right now the <code>item left</code> count is always 0. We want the number of remaining tasks.  We could do something like this:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; todos.filter(t =&gt; !t.isDone).length &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item(s) left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>anti-example</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; todos.filter(t =&gt; !t.isDone).length &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item(s) left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>That’s a little ugly to stick out all that logic into the template. That’s why Vue has the <code>computed</code>  section!</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  activeTodos() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">t</span> =&gt;</span> !t.isDone);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">  activeTodos() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">t</span> =&gt;</span> !t.isDone);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Now the template is cleaner:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; activeTodos.length &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item(s) left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123; activeTodos.length &#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> item(s) left<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>You might ask, why use a computed property when we can create a method instead?</p>
 <blockquote>
@@ -1244,14 +1248,14 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <p><img src="/images/items-left.gif" alt="items-left"></p>
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/24ae5a0f74c226325d88a2aaecad9e40b35760fb" target="_blank" rel="noopener">review diff</a></p>
 <h2 id="Clearing-completed-tasks-amp-conditional-rendering-with-v-show">Clearing completed tasks &amp; conditional rendering with <code>v-show</code><a href="#Clearing-completed-tasks-amp-conditional-rendering-with-v-show" class="headerlink" title="Clearing completed tasks &amp; conditional rendering with v-show"></a></h2><p>We want to show <code>clear completed</code> button only if there are any completed task. We can accomplish this with the <code>v-show</code> directive:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"clear-completed"</span> @<span class="attr">click</span>=<span class="string">"clearCompleted"</span> <span class="attr">v-show</span>=<span class="string">"completedTodos.length"</span>&gt;</span>Clear completed<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"clear-completed"</span> @<span class="attr">click</span>=<span class="string">"clearCompleted"</span> <span class="attr">v-show</span>=<span class="string">"completedTodos.length"</span>&gt;</span>Clear completed<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>The v-show will hide the element if the expression evaluates to false or 0.</p>
 <p>One way to clearing out completed tasks is by assigning the <code>activeTodos</code> property to the <code>todos</code>:</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clearCompleted() &#123;</span><br><span class="line">  <span class="keyword">this</span>.todos = <span class="keyword">this</span>.activeTodos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clearCompleted() &#123;</span><br><span class="line">  <span class="keyword">this</span>.todos = <span class="keyword">this</span>.activeTodos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Also, we have to add the computed property <code>completedTodos</code> that we use in the v-show</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">completedTodos() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">t</span> =&gt;</span> t.isDone);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">completedTodos() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">t</span> =&gt;</span> t.isDone);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/dd7dd90" target="_blank" rel="noopener">review diff</a></p>
 <h1 id="Vue-Conditional-Rendering-v-show-vs-v-if">Vue Conditional Rendering: <code>v-show</code> vs <code>v-if</code><a href="#Vue-Conditional-Rendering-v-show-vs-v-if" class="headerlink" title="Vue Conditional Rendering: v-show vs v-if"></a></h1><p><code>v-show</code> and <code>v-if</code> looks very similar, but they work differently. <code>v-if</code> removes the element from the DOM and disable events, while <code>v-show</code> hides it with the CSS <code>display: none;</code>. So, <code>v-if</code> is more expensive than <code>v-show</code>.</p>
@@ -1259,7 +1263,7 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <p>If you foresee the element being toggling visibility very often then you should use <code>v-show</code>. If not, then use <code>v-if</code>.</p>
 </blockquote>
 <p>We can hide the footer and central section if there’s no todo list.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"main"</span> <span class="attr">v-if</span>=<span class="string">"todos.length"</span>&gt;</span>... <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"footer"</span> <span class="attr">v-if</span>=<span class="string">"todos.length"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><figcaption><span>index.html (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"main"</span> <span class="attr">v-if</span>=<span class="string">"todos.length"</span>&gt;</span>... <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"footer"</span> <span class="attr">v-if</span>=<span class="string">"todos.length"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/790b241" target="_blank" rel="noopener">review diff</a></p>
 <h1 id="Local-Storage">Local Storage<a href="#Local-Storage" class="headerlink" title="Local Storage"></a></h1><p>On every refresh, our list gets reset. This is useful for dev but not for users. Let’s persist our Todos in the local storage.</p>
@@ -1274,10 +1278,10 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <li><code>localStorage.clear()</code>: clear all items for the current hostname.</li>
 </ul>
 <p>We are going to use <code>getItem</code> and <code>setItem</code>. First we need to define a storage key:</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> LOCAL_STORAGE_KEY = <span class="string">'todo-app-vue'</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> LOCAL_STORAGE_KEY = <span class="string">'todo-app-vue'</span>;</span><br></pre></td></tr></table></figure>
 
 <p>Then we replace <code>data.todos</code> to get items (if any) from the local storage:</p>
-<figure class="highlight js"><figcaption><span>app.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  title: <span class="string">'Todos'</span>,</span><br><span class="line">  todos: <span class="built_in">JSON</span>.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">'Learn JavaScript ES6+ goodies'</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">'Learn Vue'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">'Build something awesome'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  ],</span><br><span class="line">  editing: <span class="literal">null</span>,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">  title: <span class="string">'Todos'</span>,</span><br><span class="line">  todos: <span class="built_in">JSON</span>.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">'Learn JavaScript ES6+ goodies'</span>, <span class="attr">isDone</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">'Learn Vue'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">    &#123; <span class="attr">text</span>: <span class="string">'Build something awesome'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  ],</span><br><span class="line">  editing: <span class="literal">null</span>,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>We have to use <code>JSON.parse</code> because everything gets stored as a string and we need to convert it to an object.</p>
 <p><code>getItem</code> will retrieve the saved todos from the <code>localstorage</code>. However, we are saying it yet. Let’s see how we can do that.</p>
@@ -1285,7 +1289,7 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <blockquote>
 <p>Vue watchers vs. Computed properties. Computed properties are usually used to “compute” and cache the value of 2 or more properties. Watchers are more low level than computed properties. Watchers allow you to “watch” for changes on a single property. This is useful for performing expensive operations like saving to DB, API calls and so on.</p>
 </blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  todos: &#123;</span><br><span class="line">    deep: <span class="literal">true</span>,</span><br><span class="line">    handler(newValue) &#123;</span><br><span class="line">      localStorage.setItem(LOCAL_STORAGE_KEY, <span class="built_in">JSON</span>.stringify(newValue));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>app.js (fragment)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  todos: &#123;</span><br><span class="line">    deep: <span class="literal">true</span>,</span><br><span class="line">    handler(newValue) &#123;</span><br><span class="line">      localStorage.setItem(LOCAL_STORAGE_KEY, <span class="built_in">JSON</span>.stringify(newValue));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>This expression watches for changes in our <code>todos</code> data. Deep means that it recursively watches for changes in the values inside arrays and objects. If there’s a change, we save them to the local storage.</p>
 <p><a href="https://github.com/amejiarosario/vue-todo-app/commit/579da19" target="_blank" rel="noopener">review diff</a></p>
@@ -1295,6 +1299,8 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
 <hr>
 <p>In the next tutorial, we are going to switch gears a little bit and go deeper into Vue Components, Routing, and Local Storage. Stay tuned!</p>
 <h1 id="Summary-Vue-cheatsheet">Summary: Vue cheatsheet<a href="#Summary-Vue-cheatsheet" class="headerlink" title="Summary: Vue cheatsheet"></a></h1><p>We learned a lot! Here is a summary:</p>
+<!-- encode html with https://mothereff.in/html-entities -->
+
 <div class="table--responsive">
   <table class="table">
     <caption>Binders</caption>
@@ -1303,53 +1309,64 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
-<pre><code>&lt;tbody&gt;
-  &lt;tr&gt;
-    &lt;td&gt; Mustache &lt;/td&gt;
-    &lt;td&gt;Variable that is replaced with variable&apos;s value&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;h1&gt;{{ title }}&lt;/h1&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt; v-bind &lt;/td&gt;
-    &lt;td&gt;Bind to HTML attribute&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;span v-bind:title=&quot;tooltip&quot;&gt;&lt;/span&gt;` &lt;br&gt;
-      `&lt;div v-bind:id=&quot;dynamicId&quot;&gt;&lt;/div&gt;`
-      `&lt;button v-bind:disabled=&quot;isButtonDisabled&quot;&gt;Button&lt;/button&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; :&lt;/td&gt;
-    &lt;td&gt;Shortcut for v-bind&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;span :title=&quot;tooltip&quot;&gt;&lt;/span&gt;`
-      `&lt;li v-bind:class=&quot;{completed: todo.isDone }&quot;&gt;&lt;/li&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-text &lt;/td&gt;
-    &lt;td&gt;Inject text into the element&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;h1 v-text=&quot;title&quot;&gt;&lt;/h1&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-html &lt;/td&gt;
-    &lt;td&gt;Inject raw HTML into the element&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;blog-post v-html=&quot;content&quot;&gt;&lt;/blog-post&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-&lt;/tbody&gt;</code></pre>  </table>
+    <tbody>
+      <tr>
+        <td> Mustache </td>
+        <td>Variable that is replaced with variable's value</td>
+        <td>
+          <pre><code>&#x3C;h1&#x3E;{{ title }}&#x3C;/h1&#x3E;</code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-bind </td>
+        <td>Bind to HTML attribute</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;span v-bind:title=&#x22;tooltip&#x22;&#x3E;&#x3C;/span&#x3E;
+&#x3C;div v-bind:id=&#x22;dynamicId&#x22;&#x3E;&#x3C;/div&#x3E;
+&#x3C;button v-bind:disabled=&#x22;isButtonDisabled&#x22;&#x3E;Button&#x3C;/button&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> :</td>
+        <td>Shortcut for v-bind</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;span :title=&#x22;tooltip&#x22;&#x3E;&#x3C;/span&#x3E;
+&#x3C;li v-bind:class=&#x22;{completed: todo.isDone }&#x22;&#x3E;&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-text </td>
+        <td>Inject text into the element</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;h1 v-text=&#x22;title&#x22;&#x3E;&#x3C;/h1&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-html </td>
+        <td>Inject raw HTML into the element</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;blog-post v-html=&#x22;content&#x22;&#x3E;&#x3C;/blog-post&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>List Rendering</caption>
@@ -1358,59 +1375,73 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
-<pre><code>&lt;tbody&gt;
-  &lt;tr&gt;
-    &lt;td&gt; v-for &lt;/td&gt;
-    &lt;td&gt;Iterate over elements&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;li v-for=&quot;todo in todos&quot;&gt;{{todo.text}}&lt;/li&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-for &lt;/td&gt;
-    &lt;td&gt;Iterate with index&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;li v-for=&quot;(item, index) in items&quot;&gt;`&lt;br&gt;
-      `{% raw %}  {{ parentMessage }} - {{ index }} - {{ item.message }}{% endraw %}`&lt;br&gt;
-      `&lt;/li&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-for &lt;/td&gt;
-    &lt;td&gt;Iterate over object&apos;s values&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;li v-for=&quot;value in object&quot;&gt;`&lt;br&gt;
-      `{% raw %}  {{ value }}  {% endraw %}`&lt;br&gt;
-      `&lt;/li&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-for &lt;/td&gt;
-    &lt;td&gt;Iterate over object&apos;s keys/values&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;li v-for=&quot;(value, key) in object&quot;&gt;`&lt;br&gt;
-      `{% raw %}  {{ key }}: {{ value }}  {% endraw %}`&lt;br&gt;
-      `&lt;/li&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-for &lt;/td&gt;
-    &lt;td&gt;Iterate with keys, values and index&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;li v-for=&quot;(value, key, index) in object&quot;&gt;`&lt;br&gt;
-      `{% raw %}  {{index}}.{{ key }}: {{ value }}  {% endraw %}`&lt;br&gt;
-      `&lt;/li&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-&lt;/tbody&gt;</code></pre>  </table>
+    <tbody>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over elements</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;todo in todos&#x22;&#x3E; {{todo.text}}&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate with index</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(item, index) in items&#x22;&#x3E;
+  {{ parentMessage }} - {{ index }} - {{ item.message }}
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over object's values</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;value in object&#x22;&#x3E;
+  {{ value }}  
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate over object's keys/values</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(value, key) in object&#x22;&#x3E;
+  {{ key }}: {{ value }}  
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-for </td>
+        <td>Iterate with keys, values and index</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;li v-for=&#x22;(value, key, index) in object&#x22;&#x3E;
+  {{index}}.{{ key }}: {{ value }}  
+&#x3C;/li&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Events</caption>
@@ -1419,54 +1450,68 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
-<pre><code>&lt;tbody&gt;
-  &lt;tr&gt;
-    &lt;td&gt; v-on:click &lt;/td&gt;
-    &lt;td&gt;Invoke callback on click&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;button class=&quot;destroy&quot; v-on:click=&quot;destroyTodo(todo)&quot;&gt;&lt;/button&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; @ &lt;/td&gt;
-    &lt;td&gt;`@` is shorcut for `v-on:`&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;input class=&quot;edit&quot;
-          @keyup.esc=&quot;cancelEditing&quot;
-          @keyup.enter=&quot;finishEditing&quot;
-          @blur=&quot;finishEditing&quot;&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-on:dblclick &lt;/td&gt;
-    &lt;td&gt;Invoke callback on double-click&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;label @dblclick=&quot;startEditing(todo)&quot;&gt;{{todo.text}}&lt;/label&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; @keyup.enter &lt;/td&gt;
-    &lt;td&gt;Invoke callback on keyup &lt;kbd&gt;enter&lt;/kbd&gt;&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;input @keyup.enter=&quot;createTodo&quot;&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; @keyup.esc &lt;/td&gt;
-    &lt;td&gt;Invoke callback on keyup &lt;kbd&gt;esc&lt;/kbd&gt;&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;input @keyup.esc=&quot;cancelEditing&quot;&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-&lt;/tbody&gt;</code></pre>  </table>
+    <tbody>
+      <tr>
+        <td> v-on:click </td>
+        <td>Invoke callback on click</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;button class=&#x22;destroy&#x22; v-on:click=&#x22;destroyTodo(todo)&#x22;&#x3E;&#x3C;/button&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> @ </td>
+        <td>`@` is shorcut for `v-on:`</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input class=&#x22;edit&#x22;
+    @keyup.esc=&#x22;cancelEditing&#x22;
+    @keyup.enter=&#x22;finishEditing&#x22;
+    @blur=&#x22;finishEditing&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td>v-on:dblclick </td>
+        <td>Invoke callback on double-click</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;label @dblclick=&#x22;startEditing(todo)&#x22;&#x3E;{{todo.text}}&#x3C;/label&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> @keyup.enter </td>
+        <td>Invoke callback on keyup <kbd>enter</kbd></td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input @keyup.enter=&#x22;createTodo&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> @keyup.esc </td>
+        <td>Invoke callback on keyup <kbd>esc</kbd></td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input @keyup.esc=&#x22;cancelEditing&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Conditional Rendering</caption>
@@ -1475,27 +1520,32 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
-<pre><code>&lt;tbody&gt;
-  &lt;tr&gt;
-    &lt;td&gt; v-show &lt;/td&gt;
-    &lt;td&gt;Show or hide the element if the expression evaluates to truthy&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;button v-show=&quot;completedTodos.length&quot;&gt;Clear completed&lt;/button&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-  &lt;tr&gt;
-    &lt;td&gt; v-if &lt;/td&gt;
-    &lt;td&gt;Remove or add the element if the expression evaluates to truthy&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;footer v-if=&quot;todos.length&quot;&gt;...&lt;/footer&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-&lt;/tbody&gt;</code></pre>  </table>
+    <tbody>
+      <tr>
+        <td> v-show </td>
+        <td>Show or hide the element if the expression evaluates to truthy</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;button v-show=&#x22;completedTodos.length&#x22;&#x3E;Clear completed&#x3C;/button&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+      <tr>
+        <td> v-if </td>
+        <td>Remove or add the element if the expression evaluates to truthy</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;footer v-if=&#x22;todos.length&#x22;&#x3E;...&#x3C;/footer&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Automatic Data<->DOM Sync</-></caption>
@@ -1504,34 +1554,75 @@ https://support.google.com/affiliate/answer/7188084?hl=en&ref_topic=7477733
       <th>Description</th>
       <th>Examples</th>
     </thead>
-
-<pre><code>&lt;tbody&gt;
-  &lt;tr&gt;
-    &lt;td&gt; v-model &lt;/td&gt;
-    &lt;td&gt;Keep data and DOM in sync automatially&lt;/td&gt;
-    &lt;td&gt;
-      `&lt;input class=&quot;toggle&quot; type=&quot;checkbox&quot; v-model=&quot;todo.isDone&quot;&gt;`
-    &lt;/td&gt;
-  &lt;/tr&gt;
-
-&lt;/tbody&gt;</code></pre>  </table>
+    <tbody>
+      <tr>
+        <td> v-model </td>
+        <td>Keep data and DOM in sync automatially</td>
+        <td>
+          <pre>
+          <code>
+&#x3C;input class=&#x22;toggle&#x22; type=&#x22;checkbox&#x22; v-model=&#x22;todo.isDone&#x22;&#x3E;
+          </code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
 <div class="table--responsive">
   <table class="table">
     <caption>Vue instance</caption>
     <thead>
-      <th>Examples</th>
+      <th>Example with all attributes</th>
     </thead>
+    <tbody>
+      <tr>
+        <td>
+          <pre>
+          <code>
+// Vue Instance
+const todoApp = new Vue({
+  // element matcher
+  el: '.todoapp',
 
-<pre><code>&lt;tbody&gt;
-  &lt;tr&gt;
-    &lt;td&gt;</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Vue Instance</span></span><br><span class="line"><span class="keyword">const</span> todoApp = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  <span class="comment">// element matcher</span></span><br><span class="line">  el: <span class="string">'.todoapp'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Reactive data, when something changes here it gets updated on the templates</span></span><br><span class="line">  <span class="comment">// data should be a function so every instance get's a different data</span></span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      title: <span class="string">'Todos'</span>,</span><br><span class="line">      editing: <span class="literal">null</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// invoke this functions on event handlers, etc.</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    createTodo(event) &#123;</span><br><span class="line">      <span class="keyword">const</span> textbox = event.target;</span><br><span class="line">      <span class="keyword">this</span>.todos.push(&#123; <span class="attr">text</span>: textbox.value.trim(), <span class="attr">isDone</span>: <span class="literal">false</span> &#125;);</span><br><span class="line">      textbox.value = <span class="string">''</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// cached methods (only get invokes when data changes)</span></span><br><span class="line">  computed: &#123;</span><br><span class="line">    activeTodos() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">t</span> =&gt;</span> !t.isDone);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// watch for changes on the data</span></span><br><span class="line">  watch: &#123;</span><br><span class="line">    todos: &#123;</span><br><span class="line">      deep: <span class="literal">true</span>,</span><br><span class="line">      handler(newValue, oldValue) &#123;</span><br><span class="line">        localStorage.setItem(LOCAL_STORAGE_KEY, <span class="built_in">JSON</span>.stringify(newValue));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<pre><code>    &lt;/td&gt;
-  &lt;/tr&gt;
-
-&lt;/tbody&gt;</code></pre>  </table>
+<p>  // Reactive data, when something changes here it gets updated on the templates
+  // data should be a function so every instance get’s a different data
+  data() {
+    return {
+      title: ‘Todos’,
+      editing: null,
+    }
+  },</p>
+<p>  // invoke this functions on event handlers, etc.
+  methods: {
+    createTodo(event) {
+      const textbox = event.target;
+      this.todos.push({ text: textbox.value.trim(), isDone: false });
+      textbox.value = ‘’;
+    },
+  },</p>
+<p>  // cached methods (only get invokes when data changes)
+  computed: {
+    activeTodos() {
+      return this.todos.filter(t =&gt; !t.isDone);
+    },
+  },</p>
+<p>  // watch for changes on the data
+  watch: {
+    todos: {
+      deep: true,
+      handler(newValue, oldValue) {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newValue));
+      }
+    }
+  },
+});
+          </p></code>
+          </pre>
+        </td>
+      </tr>
+    </tbody>
+  </table><p></p>
 </div>
 
 
@@ -2684,7 +2775,7 @@ With this function, we get if two nodes are connected or not. However, they don'
 <td>Set (using list)</td>
 <td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.add" target="_blank" rel="noopener">O(n)</a></td>
 <td>-</td>
-<td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has" target="_blank" rel="noopener">O(n)</a>]</td>
+<td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has" target="_blank" rel="noopener">O(n)</a></td>
 <td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.delete" target="_blank" rel="noopener">O(n)</a></td>
 <td>Implemented using Binary Search Tree</td>
 </tr>
@@ -3482,7 +3573,7 @@ It’s like a line of people at the movies, the first to come in is the first to
 <td>Set (using list)</td>
 <td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.add" target="_blank" rel="noopener">O(n)</a></td>
 <td>-</td>
-<td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has" target="_blank" rel="noopener">O(n)</a>]</td>
+<td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.has" target="_blank" rel="noopener">O(n)</a></td>
 <td><a href="https://www.ecma-international.org/ecma-262/6.0/#sec-set.prototype.delete" target="_blank" rel="noopener">O(n)</a></td>
 <td>Implemented using Binary Search Tree</td>
 </tr>
@@ -3760,8 +3851,8 @@ https://www.yuque.com/ruanyf/share/issue-10
     <content type="html"><![CDATA[<h1 id="Summary">Summary<a href="#Summary" class="headerlink" title="Summary"></a></h1><p>We are going to learn the top algorithm’s running time that every developer should be familiar with. Knowing these time complexities will help you to assess if your code will scale. Also, it’s handy to compare different solutions for the same problem. By the end, you would be able to eyeball different implementations and know which one will perform better.</p>
 <a id="more"></a>
 
-<p>In the <a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">previous post</a>, we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enable new technology. So, this is paramount to know how to measure algorithms performance.</p>
-<p>To recap <strong>time complexity</strong> estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by “counting” the number of operations performed by your code. This time complexity is defined as a function of the input size <code>n</code> using Big-O notation. <code>n</code> indicates the magnitude of the input, while O is the growth rate function.</p>
+<p>In the <a href="/blog/2018/04/04/how-you-can-change-the-world-learning-data-structures-algorithms-free-online-course-tutorial/">previous post</a>, we saw how Alan Turing saved millions of lives with an optimized algorithm. In most cases, faster algorithms can save you time, money, and enable new technology. So, this is paramount to know how to measure algorithms’ performance.</p>
+<h2 id="What-is-time-complexity">What is time complexity?<a href="#What-is-time-complexity" class="headerlink" title="What is time complexity?"></a></h2><p>To recap <strong>time complexity</strong> estimates how an algorithm performs regardless kind of machine it runs on. You can get the time complexity by “counting” the number of operations performed by your code. This time complexity is defined as a function of the input size <code>n</code> using Big-O notation. <code>n</code> indicates the size of the input, while O is the worst-case scenario growth rate function.</p>
 <p>We use the Big-O notation to classify algorithms based on their running time or space (memory used) as the input grows. The <code>O</code> function is the growth rate in function of the input size <code>n</code>.</p>
 <p>Before we dive in, here is the <strong>big O cheatsheet</strong> and examples that we are going to cover on this post. <strong>Click</strong> on them to go to the implementation. 😉</p>
 <table>
@@ -3848,8 +3939,16 @@ https://www.yuque.com/ruanyf/share/issue-10
 <hr>
 <!-- table: time complexities -->
 
-<h1 id="O-1-Constant-time">O(1) - Constant time<a href="#O-1-Constant-time" class="headerlink" title="O(1) - Constant time"></a></h1><p><code>O(1)</code> describes algorithms that take the same amount of time to compute regardless of the input size.</p>
+<h1 id="O-1-Constant-time">O(1) - Constant time<a href="#O-1-Constant-time" class="headerlink" title="O(1) - Constant time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=520" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p><code>O(1)</code> describes algorithms that take the same amount of time to compute regardless of the input size.</p>
 <p>For instance, if a function takes the identical time to process ten elements as well as 1 million items, then we say that it has a constant growth rate or <code>O(1)</code>. Let’s see some cases.</p>
+<p>Examples of constant runtime algorithms:
+Find if an item on the array is even or odd.
+Check if an item on an array is null
+Print the first element from a list
+Find a value on a map</p>
+<p>For our discussion, we are going to implement the first and last example.</p>
 <h2 id="Odd-or-Even">Odd or Even<a href="#Odd-or-Even" class="headerlink" title="Odd or Even"></a></h2><p>Find if a number is odd or even.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEvenOrOdd</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> n % <span class="number">2</span> ? <span class="string">'Odd'</span> : <span class="string">'Even'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(isEvenOrOdd(<span class="number">10</span>)); <span class="comment">// =&gt; Even</span></span><br><span class="line"><span class="built_in">console</span>.log(isEvenOrOdd(<span class="number">10001</span>)); <span class="comment">// =&gt; Odd</span></span><br></pre></td></tr></table></figure>
 
@@ -3859,20 +3958,28 @@ https://www.yuque.com/ruanyf/share/issue-10
 <p>Do not be fooled by one-liners. They don’t always translate to constant times. You have to be aware of how they are implemented.</p>
 </blockquote>
 <p>If you have a method like <code>Array.sort()</code> or any other array or object methods, you have to look into the implementation to determine its running time.</p>
-<p>Primitive operations like sum, multiplication, subtraction, division, modulo, bit shift, etc. have a constant runtime. This can be shocking! But, let’s go in details why they are constant time. If you use the schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers. However, most programming languages limit numbers to max value (e.g. in JS: <code>Number.MAX_VALUE</code> is <code>1.7976931348623157e+308</code>). So, you cannot operate numbers that yield a result greater than the <code>MAX_VALUE</code>. So, primitive operations are bound to be completed on a fixed amount of instructions <code>O(1)</code> or throw overflow errors (in JS, <code>Infinity</code> keyword).</p>
+<p>Primitive operations like sum, multiplication, subtraction, division, modulo, bit shift, etc. have a constant runtime. This can be shocking! But, let’s go in detail why they are constant time. If you use the schoolbook long multiplication algorithm, it would take <code>O(n<sup>2</sup>)</code> to multiply two numbers. However, most programming languages limit numbers to max value (e.g. in JS: <code>Number.MAX_VALUE</code> is <code>1.7976931348623157e+308</code>). So, you cannot operate numbers that yield a result greater than the <code>MAX_VALUE</code>. So, primitive operations are bound to be completed on a fixed amount of instructions <code>O(1)</code> or throw overflow errors (in JS, <code>Infinity</code> keyword).</p>
 <!-- Addition O(n), Multiplication O(n^2) https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations -->
 
 <p> This example was easy. Let’s do another one.</p>
-<h2 id="Look-up-table">Look-up table<a href="#Look-up-table" class="headerlink" title="Look-up table"></a></h2><p>Given a string find its word frequency data.</p>
+<h2 id="Look-up-table">Look-up table<a href="#Look-up-table" class="headerlink" title="Look-up table"></a></h2><p>Given a string, find its word frequency data.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dictionary = &#123;<span class="attr">the</span>: <span class="number">22038615</span>, <span class="attr">be</span>: <span class="number">12545825</span>, <span class="attr">and</span>: <span class="number">10741073</span>, <span class="attr">of</span>: <span class="number">10343885</span>, <span class="attr">a</span>: <span class="number">10144200</span>, <span class="attr">in</span>: <span class="number">6996437</span>, <span class="attr">to</span>: <span class="number">6332195</span> <span class="comment">/* ... */</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getWordFrequency</span>(<span class="params">dictionary, word</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> dictionary[word];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getWordFrequency(dictionary, <span class="string">'the'</span>));</span><br><span class="line"><span class="built_in">console</span>.log(getWordFrequency(dictionary, <span class="string">'in'</span>));</span><br></pre></td></tr></table></figure>
 
 <p>Again, we can be sure that even if the dictionary has 10 or 1 million words, it would still execute line 4 once to find the word. However, if we decided to store the dictionary as an array rather than a hash map, then it would be a different story. In the next section, we are going to explore what’s the running time to find an item in an array.</p>
 <blockquote>
-<p>Only a hash table with a perfect <em>hash function</em> will have a worst-case runtime of <em>O(1)</em>. The ideal hash function is not practical, so there will be some collisions and workarounds leads to a worst-case runtime of <em>O(n)</em>. Still, on <em>average</em> the lookup time is <em>O(1)</em>.</p>
+<p>Only a hash table with a perfect <em>hash function</em> will have a worst-case runtime of <em>O(1)</em>. The ideal hash function is not practical, so there will be some collisions and workarounds that leads to a worst-case runtime of <em>O(n)</em>. Still, on <em>average</em>, the lookup time is <em>O(1)</em>.</p>
 </blockquote>
-<h1 id="O-n-Linear-time">O(n) - Linear time<a href="#O-n-Linear-time" class="headerlink" title="O(n) - Linear time"></a></h1><p>Linear running time algorithms are widespread. Linear runtime means that the program visits every element from the input.</p>
+<h1 id="O-n-Linear-time">O(n) - Linear time<a href="#O-n-Linear-time" class="headerlink" title="O(n) - Linear time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/mnv6sV-Ih8s?rel=0&start=732" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Linear running time algorithms are widespread. These algorithms imply that the program visits every element from the input.</p>
 <p>Linear time complexity <em><code>O(n)</code></em> means that as the input grows, the algorithms take proportionally longer to complete.</p>
 <p>Some examples:</p>
+<ul>
+<li>Get the max/min value in an array.</li>
+<li>Find a given element in a collection.</li>
+<li>Print all the values in a list.</li>
+</ul>
+<p>Let’s implement the first example.</p>
 <h2 id="The-largest-item-on-an-unsorted-array">The largest item on an unsorted array<a href="#The-largest-item-on-an-unsorted-array" class="headerlink" title="The largest item on an unsorted array"></a></h2><p>Let’s say you want to find the maximum value from an unsorted array.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMax</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> max;</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n.length; i++) &#123;</span><br><span class="line">    counter++;</span><br><span class="line">    <span class="keyword">if</span>(max === <span class="literal">undefined</span> || max &lt; n[i]) &#123;</span><br><span class="line">      max = n[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;n.length&#125;</span>, counter: <span class="subst">$&#123;counter&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -3895,11 +4002,19 @@ we only need the biggest order term, thus <code>O(n)</code>.</p>
 <p>or if <code>n</code> has 9 elements:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">findMax([<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">9</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">3</span>,<span class="number">7</span>])</span><br><span class="line"><span class="comment">// n: 9, counter: 9</span></span><br></pre></td></tr></table></figure>
 
-<p>Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer to the size of the input. If we plot it n and <code>findMax</code> running time we will have a graph like a linear equation.</p>
+<p>Now imagine that you have an array of one million items. Do you think it will take the same time? Of course not, it will take longer to the size of the input. If we plot it n and <code>findMax</code> running time, we will have a graph like a linear equation.</p>
 <img src="/images/linear-running-time-o(n).jpg" title="Linear Running time O(n) example">
 
-<h1 id="O-n-2-Quadratic-time">O(n^2) - Quadratic time<a href="#O-n-2-Quadratic-time" class="headerlink" title="O(n^2) - Quadratic time"></a></h1><p>A function with a quadratic time complexity has a growth rate of n<sup>2</sup>. If the input is size 2, it will do four operations. If the input is size 8, it will take 64, and so on.</p>
-<p>Here are some code examples of quadratic algorithms:</p>
+<h1 id="O-n-2-Quadratic-time">O(n^2) - Quadratic time<a href="#O-n-2-Quadratic-time" class="headerlink" title="O(n^2) - Quadratic time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/ZRCTMYv2fRU?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>A function with a quadratic time complexity has a growth rate of n<sup>2</sup>. If the input is size 2, it will do four operations. If the input is size 8, it will take 64, and so on.</p>
+<p>Here are some examples of quadratic algorithms:</p>
+<ul>
+<li>Check if a collection has duplicated values.</li>
+<li>Sorting items in a collection using bubble sort, insertion sort, or selection sort.</li>
+<li>Find all possible ordered pairs in an array.</li>
+</ul>
+<p>Let’s implement the first two.</p>
 <h2 id="Has-duplicates">Has duplicates<a href="#Has-duplicates" class="headerlink" title="Has duplicates"></a></h2><p>You want to find duplicate words in an array. A naïve solution will be the following:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasDuplicates</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> duplicates = [];</span><br><span class="line">  <span class="keyword">let</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> outter = <span class="number">0</span>; outter &lt; n.length; outter++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> inner = <span class="number">0</span>; inner &lt; n.length; inner++) &#123;</span><br><span class="line">      counter++;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(outter === inner) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(n[outter] === n[inner]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;n.length&#125;</span>, counter: <span class="subst">$&#123;counter&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -3939,30 +4054,33 @@ Expand:
 -->
 
 <h1 id="O-n-c-Polynomial-time">O(n^c) - Polynomial time<a href="#O-n-c-Polynomial-time" class="headerlink" title="O(n^c) - Polynomial time"></a></h1><p>Polynomial running is represented as O(n<sup>c</sup>), when <code>c &gt; 1</code>. As you already saw, two inner loops almost translate to O(n<sup>2</sup>) since it has to go through the array twice in most cases. Are three nested loops cubic? If each one visit all elements, then yes!</p>
-<p>Usually, we want to stay away from polynomial running times (quadratic, cubic, n<sup>c</sup> …) since they take longer to compute as the input grows fast. However, they are not the worst.</p>
+<p>Usually, we want to stay away from polynomial running times (quadratic, cubic, n<sup>c</sup>, etc.) since they take longer to compute as the input grows fast. However, they are not the worst.</p>
 <h2 id="Triple-nested-loops">Triple nested loops<a href="#Triple-nested-loops" class="headerlink" title="Triple nested loops"></a></h2><p>Let’s say you want to find the solutions for a multi-variable equation that looks like this:</p>
 <blockquote>
 <p>3x + 9y + 8z = 79</p>
 </blockquote>
-<p>This naïve program will give you all the solutions that satisfy the equation where <code>x</code>, <code>y</code> and <code>z</code> &lt; <code>n</code>.</p>
+<p>This naïve program will give you all the solutions that satisfy the equation where <code>x</code>, <code>y</code>, and <code>z</code> &lt; <code>n</code>.</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findXYZ</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> solutions = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; n; x++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> y = <span class="number">0</span>; y &lt; n; y++) &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> z = <span class="number">0</span>; z &lt; n; z++) &#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="number">3</span>*x + <span class="number">9</span>*y + <span class="number">8</span>*z === <span class="number">79</span> ) &#123;</span><br><span class="line">          solutions.push(&#123;x, y, z&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> solutions;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findXYZ(<span class="number">10</span>)); <span class="comment">// =&gt; [&#123;x: 0, y: 7, z: 2&#125;, ...]</span></span><br></pre></td></tr></table></figure>
 
 <p>This algorithm has a cubic running time: <code>O(n^3)</code>.</p>
 <p><strong>Note:</strong> We could do a more efficient solution but did it this way to show an example of a cubic runtime.</p>
-<h1 id="O-log-n-Logarithmic-time">O(log n) - Logarithmic time<a href="#O-log-n-Logarithmic-time" class="headerlink" title="O(log n) - Logarithmic time"></a></h1><p>Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let’s say that we want to look for a word in an old fashion dictionary. It has every word sorted alphabetically. There are at least two ways to do it:</p>
+<h1 id="O-log-n-Logarithmic-time">O(log n) - Logarithmic time<a href="#O-log-n-Logarithmic-time" class="headerlink" title="O(log n) - Logarithmic time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/cCPOayp1vek?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let’s say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If you are looking for a word, then there are at least two ways to do it:</p>
 <p>Algorithm A:</p>
-<ul>
-<li>Start at the beginning of the book and go in order until you find the contact you are looking for.</li>
-</ul>
+<ol>
+<li>Start on the first page of the book and go word by word until you find what you are looking for.</li>
+</ol>
 <p>Algorithm B:</p>
-<ul>
+<ol>
 <li>Open the book in the middle and check the first word on it.</li>
-<li>If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half.</li>
-</ul>
-<p>Which one is faster? The first algorithms go word by word <em>O(n)</em>, while the algorithm B split the problem in half on each iteration <em>O(log n)</em>. This 2nd algorithm is a binary search.</p>
+<li>If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half. </li>
+<li>Divide the remainder in half again, and repeat step #2 until you find the word you are looking for.</li>
+</ol>
+<p>Which one is faster? The first algorithms go word by word <em>O(n)</em>, while the algorithm B split the problem in half on each iteration <em>O(log n)</em>. This 2nd algorithm is a <strong>binary search</strong>.</p>
 <h2 id="Binary-search">Binary search<a href="#Binary-search" class="headerlink" title="Binary search"></a></h2><p>Find the index of an element in a sorted array.</p>
 <p>If we implement (Algorithm A) going through all the elements in an array, it will take a running time of <code>O(n)</code>. Can we do better? We can try using the fact that the collection is already sorted. Later, we can divide in half as we look for the element in question.</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">array, element, offset = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// split array in half</span></span><br><span class="line marked">  <span class="keyword">const</span> half = <span class="built_in">parseInt</span>(array.length / <span class="number">2</span>);</span><br><span class="line marked">  <span class="keyword">const</span> current = array[half];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(current === element) &#123;</span><br><span class="line">    <span class="keyword">return</span> offset + half;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(element &gt; current) &#123;</span><br><span class="line">    <span class="keyword">const</span> right = array.slice(half);</span><br><span class="line">    <span class="keyword">return</span> indexOf(right, element, offset + half);</span><br><span class="line marked">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> left = array.slice(<span class="number">0</span>, half)</span><br><span class="line">    <span class="keyword">return</span> indexOf(left, element, offset);</span><br><span class="line marked">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> directory = [<span class="string">"Adrian"</span>, <span class="string">"Bella"</span>, <span class="string">"Charlotte"</span>, <span class="string">"Daniel"</span>, <span class="string">"Emma"</span>, <span class="string">"Hanna"</span>, <span class="string">"Isabella"</span>, <span class="string">"Jayden"</span>, <span class="string">"Kaylee"</span>, <span class="string">"Luke"</span>, <span class="string">"Mia"</span>, <span class="string">"Nora"</span>, <span class="string">"Olivia"</span>, <span class="string">"Paisley"</span>, <span class="string">"Riley"</span>, <span class="string">"Thomas"</span>, <span class="string">"Wyatt"</span>, <span class="string">"Xander"</span>, <span class="string">"Zoe"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">'Hanna'</span>));   <span class="comment">// =&gt; 5</span></span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">'Adrian'</span>));  <span class="comment">// =&gt; 0</span></span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">'Zoe'</span>));     <span class="comment">// =&gt; 18</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">array, element, offset = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// split array in half</span></span><br><span class="line marked">  <span class="keyword">const</span> half = <span class="built_in">parseInt</span>(array.length / <span class="number">2</span>);</span><br><span class="line marked">  <span class="keyword">const</span> current = array[half];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(current === element) &#123;</span><br><span class="line">    <span class="keyword">return</span> offset + half;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span>(element &gt; current) &#123;</span><br><span class="line">    <span class="keyword">const</span> right = array.slice(half);</span><br><span class="line">    <span class="keyword">return</span> indexOf(right, element, offset + half);</span><br><span class="line marked">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> left = array.slice(<span class="number">0</span>, half)</span><br><span class="line">    <span class="keyword">return</span> indexOf(left, element, offset);</span><br><span class="line marked">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage example with a list of names in ascending order:</span></span><br><span class="line"><span class="keyword">const</span> directory = [<span class="string">"Adrian"</span>, <span class="string">"Bella"</span>, <span class="string">"Charlotte"</span>, <span class="string">"Daniel"</span>, <span class="string">"Emma"</span>, <span class="string">"Hanna"</span>, <span class="string">"Isabella"</span>, <span class="string">"Jayden"</span>, <span class="string">"Kaylee"</span>, <span class="string">"Luke"</span>, <span class="string">"Mia"</span>, <span class="string">"Nora"</span>, <span class="string">"Olivia"</span>, <span class="string">"Paisley"</span>, <span class="string">"Riley"</span>, <span class="string">"Thomas"</span>, <span class="string">"Wyatt"</span>, <span class="string">"Xander"</span>, <span class="string">"Zoe"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">'Hanna'</span>));   <span class="comment">// =&gt; 5</span></span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">'Adrian'</span>));  <span class="comment">// =&gt; 0</span></span><br><span class="line"><span class="built_in">console</span>.log(indexOf(directory, <span class="string">'Zoe'</span>));     <span class="comment">// =&gt; 18</span></span><br></pre></td></tr></table></figure>
 
 <p>Calculating the time complexity of <code>indexOf</code> is not as straightforward as the previous examples. This function is recursive.</p>
 <p>There are several ways to analyze recursive algorithms. For simplicity, we are going to use the <code>Master Method</code>.</p>
@@ -3979,28 +4097,34 @@ Expand:
 </blockquote>
 <p>where:</p>
 <ul>
-<li><code>n</code>: the size of the recursion problem. duh? :)</li>
-<li><code>a</code>: the number of sub-problems. For our case, we only split the problem into another subproblem.</li>
-<li><code>b</code>: the factor by which <code>n</code> is reduced. For our example, we divide <code>n</code> in half each time.</li>
-<li><code>f(n)</code>: the running time outside the recursion. E.g., O(1)</li>
+<li><code>T</code>: time complexity function in terms of the input size <code>n</code>.</li>
+<li><code>n</code>: the size of the input. duh? :)</li>
+<li><code>a</code>: the number of sub-problems. For our case, we only split the problem into one subproblem. So, <code>a=1</code>.</li>
+<li><code>b</code>: the factor by which <code>n</code> is reduced. For our example, we divide <code>n</code> in half each time. Thus, <code>b=2</code>.</li>
+<li><code>f(n)</code>: the running time outside the recursion. Since dividing by 2 is constant time, we have <code>f(n) = O(1)</code>.</li>
 </ul>
 <p>2) Once we know the values of <code>a</code>, <code>b</code> and <code>f(n)</code>. We can determine the runtime of the recursion using this formula:</p>
 <blockquote>
 <p>n<sup>log<sub>b</sub>a</sup></p>
 </blockquote>
 <p>This value will help us to find which master method case we are solving.</p>
+<p>For binary search, we have:</p>
+<p>n<sup>log<sub>b</sub>a</sup> = n<sup>log<sub>2</sub>1</sup> = n<sub>0</sub> = 1</p>
 <p>3) Finally, we compare the recursion runtime from step 2) and the runtime <code>f(n)</code> from step 1). Based on that, we have the following cases:</p>
-<h3 id="Case-1-Most-of-the-work-done-in-the-recursion"><strong>Case 1</strong>: Most of the work done in the recursion.<a href="#Case-1-Most-of-the-work-done-in-the-recursion" class="headerlink" title="Case 1: Most of the work done in the recursion."></a></h3><p>If <code>n<sup>log<sub>b</sub>a</sup></code> &gt; <code>f(n)</code>,</p>
+<p><strong><em>Case 1</em>: Most of the work done in the recursion.</strong></p>
+<p>If <code>n<sup>log<sub>b</sub>a</sup></code> &gt; <code>f(n)</code>,</p>
 <p><strong>then</strong> runtime is:</p>
 <blockquote>
 <p><i>O(n<sup>log<sub>b</sub>a</sup>)</i></p>
 </blockquote>
-<h3 id="Case-2-The-runtime-of-the-work-done-in-the-recursion-and-outside-is-the-same"><strong>Case 2</strong>: The runtime of the work done in the recursion and outside is the same<a href="#Case-2-The-runtime-of-the-work-done-in-the-recursion-and-outside-is-the-same" class="headerlink" title="Case 2: The runtime of the work done in the recursion and outside is the same"></a></h3><p>If <code>n<sup>log<sub>b</sub>a</sup></code> === <code>f(n)</code>,</p>
+<p><strong><em>Case 2</em>: The runtime of the work done in the recursion and outside is the same</strong></p>
+<p>If <code>n<sup>log<sub>b</sub>a</sup></code> === <code>f(n)</code>,</p>
 <p><strong>then</strong> runtime is:</p>
 <blockquote>
 <p><i>O(n<sup>log<sub>b</sub>a</sup> log(n))</i></p>
 </blockquote>
-<h3 id="Case-3-Most-of-the-work-is-done-outside-the-recursion"><strong>Case 3</strong>: Most of the work is done outside the recursion<a href="#Case-3-Most-of-the-work-is-done-outside-the-recursion" class="headerlink" title="Case 3: Most of the work is done outside the recursion"></a></h3><p>If <code>n<sup>log<sub>b</sub>a</sup></code> &lt; <code>f(n)</code>,</p>
+<p><strong><em>Case 3</em>: Most of the work is done outside the recursion</strong></p>
+<p>If <code>n<sup>log<sub>b</sub>a</sup></code> &lt; <code>f(n)</code>,</p>
 <p><strong>then</strong> runtime is:</p>
 <blockquote>
 <p><i>O(f(n))</i></p>
@@ -4026,7 +4150,7 @@ Expand:
 <li>Runtime of work done <strong>inside</strong> the recursion given by this formula <code>n<sup>log<sub>b</sub>a</sup></code>. E.g. O(<code>n<sup>log<sub>2</sub>1<sup></sup></sup></code>) = O(<code>n<sup>0<sub></sub></sup></code>) = <code>O(1)</code>.</li>
 </ul>
 <p>3) Finally, getting the runtime. Based on the comparison of the expressions from the previous steps, find the case it matches.</p>
-<p>As we saw in the previous step the work outside and inside the recursion has the same runtime, so we are in <strong>case 2</strong>.</p>
+<p>As we saw in the previous step, the work outside and inside the recursion has the same runtime, so we are in <strong>case 2</strong>.</p>
 <blockquote>
 <p>O(n<sup>log<sub>b</sub>a</sup> log(n))</p>
 </blockquote>
@@ -4051,17 +4175,23 @@ https://math.stackexchange.com/questions/tagged/recursive-algorithms+algorithms
 https://stackoverflow.com/q/13467674/684957
 https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms) -->
 
-<h1 id="O-n-log-n-Linearithmic">O(n log n) - Linearithmic<a href="#O-n-log-n-Linearithmic" class="headerlink" title="O(n log n) - Linearithmic"></a></h1><p>Linearithmic time complexity it’s slightly slower than a linear algorithm. However, it’s still much better than a quadratic algorithm (you will see a graph at the very end of the post).</p>
+<h1 id="O-n-log-n-Linearithmic">O(n log n) - Linearithmic<a href="#O-n-log-n-Linearithmic" class="headerlink" title="O(n log n) - Linearithmic"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/PADwBMuehYc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Linearithmic time complexity it’s slightly slower than a linear algorithm. However, it’s still much better than a quadratic algorithm (you will see a graph at the very end of the post).</p>
+<p><strong>Examples of Linearithmic algorithms:</strong></p>
+<ul>
+<li>Efficient sorting algorithms like merge sort, quicksort and others.</li>
+</ul>
 <h2 id="Mergesort">Mergesort<a href="#Mergesort" class="headerlink" title="Mergesort"></a></h2><p>What’s the best way to sort an array?  Before, we proposed a solution using bubble sort that has a time complexity of O(n<sup>2</sup>). Can we do better?</p>
 <p>We can use an algorithm called <code>mergesort</code> to improve it.
-This’s how it works:</p>
+This is how mergesort works:</p>
 <ol>
 <li>We are going to divide the array recursively until the elements are two or less.</li>
 <li>We know how to sort two items, so we sort them iteratively (base case).</li>
 <li>The final step is merging: we merge in taking one by one from each array such that they are in ascending order.</li>
 </ol>
 <p>Here’s the code for merge sort:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> length = n.length;</span><br><span class="line">  <span class="comment">// base case</span></span><br><span class="line">  <span class="keyword">if</span>(length === <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(length === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n[<span class="number">0</span>] &gt; n[<span class="number">1</span>] ? [n[<span class="number">1</span>], n[<span class="number">0</span>]] : [n[<span class="number">0</span>], n[<span class="number">1</span>]];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// slit and merge</span></span><br><span class="line">  <span class="keyword">const</span> mid = length/<span class="number">2</span>;</span><br><span class="line">  <span class="keyword">return</span> merge(sort(n.slice(<span class="number">0</span>, mid)), sort(n.slice(mid)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">a = [], b = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> merged = [];</span><br><span class="line">  <span class="comment">// merge elements on a and b in asc order. Run-time O(a + b)</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> ai = <span class="number">0</span>, bi = <span class="number">0</span>; ai &lt; a.length || bi &lt; b.length;) &#123;</span><br><span class="line">    <span class="keyword">if</span>(ai &gt;= a.length || a[ai] &gt; b[bi]) &#123;</span><br><span class="line">      merged.push(b[bi++]);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      merged.push(a[ai++]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> merged;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Sort array in asc order using merge-sort</span></span><br><span class="line"><span class="comment"> * @example</span></span><br><span class="line"><span class="comment"> *    sort([3, 2, 1]) =&gt; [1, 2, 3]</span></span><br><span class="line"><span class="comment"> *    sort([3]) =&gt; [3]</span></span><br><span class="line"><span class="comment"> *    sort([3, 2]) =&gt; [2, 3]</span></span><br><span class="line"><span class="comment"> * @param &#123;array&#125; array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">array = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> size = array.length;</span><br><span class="line">  <span class="comment">// base case</span></span><br><span class="line">  <span class="keyword">if</span> (size &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (size === <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> array[<span class="number">0</span>] &gt; array[<span class="number">1</span>] ? [array[<span class="number">1</span>], array[<span class="number">0</span>]] : array;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// slit and merge</span></span><br><span class="line">  <span class="keyword">const</span> mid = <span class="built_in">parseInt</span>(size / <span class="number">2</span>, <span class="number">10</span>);</span><br><span class="line">  <span class="keyword">return</span> merge(sort(array.slice(<span class="number">0</span>, mid)), sort(array.slice(mid)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Merge two arrays in asc order</span></span><br><span class="line"><span class="comment"> * @example</span></span><br><span class="line"><span class="comment"> *    merge([2,5,9], [1,6,7]) =&gt; [1, 2, 5, 6, 7, 9]</span></span><br><span class="line"><span class="comment"> * @param &#123;array&#125; array1</span></span><br><span class="line"><span class="comment"> * @param &#123;array&#125; array2</span></span><br><span class="line"><span class="comment"> * @returns &#123;array&#125; merged arrays in asc order</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">array1 = [], array2 = []</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> merged = [];</span><br><span class="line">  <span class="keyword">let</span> array1Index = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> array2Index = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">// merge elements on a and b in asc order. Run-time O(a + b)</span></span><br><span class="line">  <span class="keyword">while</span> (array1Index &lt; array1.length || array2Index &lt; array2.length) &#123;</span><br><span class="line">    <span class="keyword">if</span> (array1Index &gt;= array1.length || array1[array1Index] &gt; array2[array2Index]) &#123;</span><br><span class="line">      merged.push(array2[array2Index]);</span><br><span class="line">      array2Index += <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      merged.push(array1[array1Index]);</span><br><span class="line">      array1Index += <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> merged;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>As you can see, it has two functions <code>sort</code> and <code>merge</code>. Merge is an auxiliary function that runs once through the collection <code>a</code> and <code>b</code>, so it’s running time is O(n). Let’s apply the Master Method to find the running time.</p>
 <h2 id="Master-Method-for-Mergesort">Master Method for Mergesort<a href="#Master-Method-for-Mergesort" class="headerlink" title="Master Method for Mergesort"></a></h2><p>We are going to apply the <a href="#Master-Method-for-recursive-algorithms">Master Method that we explained above</a> to find the runtime:</p>
@@ -4082,9 +4212,20 @@ This’s how it works:</p>
 <p><i>O(n<sup>log<sub>2</sub>2</sup> log(n))</i></p>
 <p><i>O(n<sup>1</sup> log(n))</i></p>
 <p><i>O(n log(n))</i> <strong>👈 this is running time of the merge sort</strong></p>
-<h1 id="O-2-n-Exponential-time">O(2^n) - Exponential time<a href="#O-2-n-Exponential-time" class="headerlink" title="O(2^n) - Exponential time"></a></h1><p>Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.</p>
-<h2 id="Subsets-of-a-Set">Subsets of a Set<a href="#Subsets-of-a-Set" class="headerlink" title="Subsets of a Set"></a></h2><p>Finding all distinct subsets of a given set. For instance, let’s do some examples to try to come up with an algorithm to solve it:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getSubsets(<span class="string">''</span>) <span class="comment">// =&gt;  ['']</span></span><br><span class="line">getSubsets(<span class="string">'a'</span>) <span class="comment">// =&gt; ['', 'a']</span></span><br><span class="line">getSubsets(<span class="string">'ab'</span>) <span class="comment">// =&gt; ['', 'a', 'b', 'ab']</span></span><br></pre></td></tr></table></figure>
+<h1 id="O-2-n-Exponential-time">O(2^n) - Exponential time<a href="#O-2-n-Exponential-time" class="headerlink" title="O(2^n) - Exponential time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/LDwZK4I6QDc?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Exponential (base 2) running time means that the calculations performed by an algorithm double every time as the input grows.</p>
+<p><strong>Examples of exponential runtime algorithms:</strong></p>
+<ul>
+<li>Power Set: all the subsets on a set.</li>
+<li>Fibonacci.</li>
+<li>Travelling salesman problem using dyanmic programming.</li>
+</ul>
+<h2 id="Power-Set">Power Set<a href="#Power-Set" class="headerlink" title="Power Set"></a></h2><p>To understand the power set, let’s imaging you are buying pizza. 
+The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pinapple.
+Let’s call each topping A, B, C, D. What are your choices? You can select no topping (you are on a diet ;), you can choose one topping, or two or three or all of them, and so on. The power set gives you all the possibilities (BTW, there 16 with 4 toppings as you will see later)</p>
+<p>Finding all distinct subsets of a given set. For instance, let’s do some examples to try to come up with an algorithm to solve it:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powerset(<span class="string">''</span>) <span class="comment">// =&gt;  ['']</span></span><br><span class="line">powerset(<span class="string">'a'</span>) <span class="comment">// =&gt; ['', 'a']</span></span><br><span class="line">powerset(<span class="string">'ab'</span>) <span class="comment">// =&gt; ['', 'a', 'b', 'ab']</span></span><br></pre></td></tr></table></figure>
 
 <p>Did you notice any pattern?</p>
 <ul>
@@ -4094,14 +4235,16 @@ This’s how it works:</p>
 </ul>
 <p>What if you want to find the subsets of <code>abc</code>? Well, it would be precisely the subsets of ‘ab’ and again the subsets of <code>ab</code> with <code>c</code> appended at the end of each element.</p>
 <p>As you noticed, every time the input gets longer, the output is twice as long as the previous one. Let’s code it:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSubsets</span>(<span class="params">n = <span class="string">''</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> array = <span class="built_in">Array</span>.from(n);</span><br><span class="line">  <span class="keyword">const</span> base = [<span class="string">''</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> results = array.reduce(<span class="function">(<span class="params">previous, element</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> previousPlusElement = previous.map(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;el&#125;</span><span class="subst">$&#123;element&#125;</span>`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> previous.concat(previousPlusElement);</span><br><span class="line">  &#125;, base);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`getSubsets(<span class="subst">$&#123;n&#125;</span>) // <span class="subst">$&#123;results.slice(<span class="number">0</span>, <span class="number">15</span>).join(<span class="string">', '</span>)&#125;</span>... `</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`n: <span class="subst">$&#123;array.length&#125;</span>, counter: <span class="subst">$&#123;results.length&#125;</span>;`</span>);</span><br><span class="line">  <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">powerset</span>(<span class="params">n = <span class="string">''</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> array = <span class="built_in">Array</span>.from(n);</span><br><span class="line">  <span class="keyword">const</span> base = [<span class="string">''</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> results = array.reduce(<span class="function">(<span class="params">previous, element</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> previousPlusElement = previous.map(<span class="function"><span class="params">el</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;el&#125;</span><span class="subst">$&#123;element&#125;</span>`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> previous.concat(previousPlusElement);</span><br><span class="line">  &#125;, base);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> results;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>If we run that function for a couple of cases we will get:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">getSubsets(<span class="string">''</span>) <span class="comment">// ...</span></span><br><span class="line"><span class="comment">// n = 0, f(n) = 1;</span></span><br><span class="line">getSubsets(<span class="string">'a'</span>) <span class="comment">// , a...</span></span><br><span class="line"><span class="comment">// n = 1, f(n) = 2;</span></span><br><span class="line">getSubsets(<span class="string">'ab'</span>) <span class="comment">// , a, b, ab...</span></span><br><span class="line"><span class="comment">// n = 2, f(n) = 4;</span></span><br><span class="line">getSubsets(<span class="string">'abc'</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc...</span></span><br><span class="line"><span class="comment">// n = 3, f(n) = 8;</span></span><br><span class="line">getSubsets(<span class="string">'abcd'</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...</span></span><br><span class="line"><span class="comment">// n = 4, f(n) = 16;</span></span><br><span class="line">getSubsets(<span class="string">'abcde'</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...</span></span><br><span class="line"><span class="comment">// n = 5, f(n) = 32;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">powerset(<span class="string">''</span>) <span class="comment">// ...</span></span><br><span class="line"><span class="comment">// n = 0, f(n) = 1;</span></span><br><span class="line">powerset(<span class="string">'a'</span>) <span class="comment">// , a...</span></span><br><span class="line"><span class="comment">// n = 1, f(n) = 2;</span></span><br><span class="line">powerset(<span class="string">'ab'</span>) <span class="comment">// , a, b, ab...</span></span><br><span class="line"><span class="comment">// n = 2, f(n) = 4;</span></span><br><span class="line">powerset(<span class="string">'abc'</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc...</span></span><br><span class="line"><span class="comment">// n = 3, f(n) = 8;</span></span><br><span class="line">powerset(<span class="string">'abcd'</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...</span></span><br><span class="line"><span class="comment">// n = 4, f(n) = 16;</span></span><br><span class="line">powerset(<span class="string">'abcde'</span>) <span class="comment">// , a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd...</span></span><br><span class="line"><span class="comment">// n = 5, f(n) = 32;</span></span><br></pre></td></tr></table></figure>
 
 <p>As expected, if you plot <code>n</code> and <code>f(n)</code>, you will notice that it would be exactly like the function <code>2^n</code>. This algorithm has a running time of <code>O(2^n)</code>.</p>
 <p><strong>Note:</strong> You should avoid functions with exponential running times (if possible) since they don’t scale well. The time it takes to process the output doubles with every additional input size. But exponential running time is not the worst yet; others go even slower. Let’s see one more example in the next section.</p>
-<h1 id="O-n-Factorial-time">O(n!) - Factorial time<a href="#O-n-Factorial-time" class="headerlink" title="O(n!) - Factorial time"></a></h1><p>Factorial is the multiplication of all positive integer numbers less than itself. For instance:</p>
+<h1 id="O-n-Factorial-time">O(n!) - Factorial time<a href="#O-n-Factorial-time" class="headerlink" title="O(n!) - Factorial time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/snBRcJlrnVw?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>Factorial is the multiplication of all positive integer numbers less than itself. For instance:</p>
 <blockquote>
 <p>5! = 5 x 4 x 3 x 2 x 1 = 120</p>
 </blockquote>
@@ -5242,7 +5385,7 @@ In the following sections, you are going to learn how to do that using <code>exp
 <h2 id="Troubleshooting-import-and-require-issues">Troubleshooting <code>import</code> and <code>require</code> issues<a href="#Troubleshooting-import-and-require-issues" class="headerlink" title="Troubleshooting import and require issues"></a></h2><h3 id="Experimental-Flag">Experimental Flag<a href="#Experimental-Flag" class="headerlink" title="Experimental Flag"></a></h3><p>If you don’t use the experimental flag <code>node --experimental-modules</code> and you try to use <code>import</code> you will get an error like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">internal/modules/cjs/loader.js:819</span><br><span class="line">  throw new ERR_REQUIRE_ESM(filename);</span><br><span class="line">  ^</span><br><span class="line"></span><br><span class="line">Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: bla bla blah</span><br></pre></td></tr></table></figure>
 
-<h3 id="File-extension-mjs-vs-js-or-cjs">File extension .mjs vs .js (or .cjs)<a href="#File-extension-mjs-vs-js-or-cjs" class="headerlink" title="File extension .mjs vs .js (or .cjs)"></a></h3><p>If you have a <code>*.mjs</code> file you cannot use <code>require</code> or it will throw and error (<code>ReferenceError: require is not defined</code>).
+<h3 id="File-extension-mjs-vs-js-or-cjs">File extension .mjs vs .js (or .cjs)<a href="#File-extension-mjs-vs-js-or-cjs" class="headerlink" title="File extension .mjs vs .js (or .cjs)"></a></h3><p>If you have a <code>*.mjs</code> file you cannot use <code>require</code> or it will throw an error (<code>ReferenceError: require is not defined</code>).
 <code>.mjs</code> is for <code>import</code> ECMAScript Modules and <code>.js</code> is for regular <code>require</code> modules.</p>
 <p>However, with <code>*.mjs</code> you can load both kinds of modules!</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; area, circumference &#125; <span class="keyword">from</span> <span class="string">'./circle.mjs'</span>;</span><br><span class="line"><span class="keyword">import</span> Cat <span class="keyword">from</span> <span class="string">'./cat.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> r = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></span><br><span class="line"><span class="string">  area: <span class="subst">$&#123;area(r)&#125;</span>;</span></span><br><span class="line"><span class="string">  circumference: <span class="subst">$&#123;circumference(r)&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line"><span class="built_in">console</span>.log(cat.makeSound());</span><br></pre></td></tr></table></figure>
@@ -5270,7 +5413,7 @@ In the following sections, you are going to learn how to do that using <code>exp
     <link href="https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/"/>
     <id>https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/</id>
     <published>2016-06-25T19:14:49.000Z</published>
-    <updated>2019-11-13T21:25:37.116Z</updated>
+    <updated>2020-01-10T21:08:50.417Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm run</span><br><span class="line">yarn run</span><br><span class="line">grunt --<span class="built_in">help</span></span><br><span class="line">gulp --tasks</span><br><span class="line">rake --tasks</span><br></pre></td></tr></table></figure>
 

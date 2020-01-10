@@ -302,7 +302,7 @@ Modules are a crucial concept to understand Node.js projects. In this post, we c
       
         <span class="m-x-2" title="Pageviews">
           <i class="fa fa-eye" aria-hidden="true"></i>
-          200.9k
+          225.6k
         </span>
       
 
@@ -442,7 +442,7 @@ In the following sections, you are going to learn how to do that using <code>exp
 <h2 id="Troubleshooting-import-and-require-issues">Troubleshooting <code>import</code> and <code>require</code> issues<a href="#Troubleshooting-import-and-require-issues" class="headerlink" title="Troubleshooting import and require issues"></a></h2><h3 id="Experimental-Flag">Experimental Flag<a href="#Experimental-Flag" class="headerlink" title="Experimental Flag"></a></h3><p>If you don’t use the experimental flag <code>node --experimental-modules</code> and you try to use <code>import</code> you will get an error like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">internal/modules/cjs/loader.js:819</span><br><span class="line">  throw new ERR_REQUIRE_ESM(filename);</span><br><span class="line">  ^</span><br><span class="line"></span><br><span class="line">Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: bla bla blah</span><br></pre></td></tr></table></figure>
 
-<h3 id="File-extension-mjs-vs-js-or-cjs">File extension .mjs vs .js (or .cjs)<a href="#File-extension-mjs-vs-js-or-cjs" class="headerlink" title="File extension .mjs vs .js (or .cjs)"></a></h3><p>If you have a <code>*.mjs</code> file you cannot use <code>require</code> or it will throw and error (<code>ReferenceError: require is not defined</code>).
+<h3 id="File-extension-mjs-vs-js-or-cjs">File extension .mjs vs .js (or .cjs)<a href="#File-extension-mjs-vs-js-or-cjs" class="headerlink" title="File extension .mjs vs .js (or .cjs)"></a></h3><p>If you have a <code>*.mjs</code> file you cannot use <code>require</code> or it will throw an error (<code>ReferenceError: require is not defined</code>).
 <code>.mjs</code> is for <code>import</code> ECMAScript Modules and <code>.js</code> is for regular <code>require</code> modules.</p>
 <p>However, with <code>*.mjs</code> you can load both kinds of modules!</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; area, circumference &#125; <span class="keyword">from</span> <span class="string">'./circle.mjs'</span>;</span><br><span class="line"><span class="keyword">import</span> Cat <span class="keyword">from</span> <span class="string">'./cat.js'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> r = <span class="number">3</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Circle with radius <span class="subst">$&#123;r&#125;</span> has</span></span><br><span class="line"><span class="string">  area: <span class="subst">$&#123;area(r)&#125;</span>;</span></span><br><span class="line"><span class="string">  circumference: <span class="subst">$&#123;circumference(r)&#125;</span>`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line"><span class="built_in">console</span>.log(cat.makeSound());</span><br></pre></td></tr></table></figure>
@@ -688,9 +688,9 @@ In the following sections, you are going to learn how to do that using <code>exp
     <footer class="page-footer">
       <div class="container">
         <div class="p-y-2">
-          &copy; 2019 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Mon Nov 25 2019 20:26:53 GMT-0500 (Eastern Standard Time)">
-            v.q1jyot
+          &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
+          <span class="muted m-x-4" title="Fri Jan 10 2020 17:27:52 GMT-0500 (Eastern Standard Time)">
+            v.q3wx2g
           </span>
         </div>
       </div>
