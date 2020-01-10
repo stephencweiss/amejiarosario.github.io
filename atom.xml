@@ -1990,7 +1990,7 @@ You can <code>star</code> it to keep it handy.</p>
 </li>
 </ol>
 <hr>
-<h1 id="Trees-basic-concepts">Trees: basic concepts<a href="#Trees-basic-concepts" class="headerlink" title="Trees: basic concepts"></a></h1><p>A tree is a data structure where a node can zero or more children. Each node contains a <strong>value</strong>. Like graphs, the connection between nodes is called <strong>edges</strong>. A tree is a type of graph, but not all of them are trees (more on that later).</p>
+<h1 id="Trees-basic-concepts">Trees: basic concepts<a href="#Trees-basic-concepts" class="headerlink" title="Trees: basic concepts"></a></h1><p>A tree is a data structure where a node can have zero or more children. Each node contains a <strong>value</strong>. Like graphs, the connection between nodes is called <strong>edges</strong>. A tree is a type of graph, but not all of them are trees (more on that later).</p>
 <p>These data structures are called “trees” because the data structure resembles a tree 🌳. It starts with a <strong>root</strong> node and <strong>branch</strong> off with its descendants, and finally, there are <strong>leaves</strong>.</p>
 <!-- { img https://www.tutorialspoint.com/data_structures_algorithms/images/binary_tree.jpg Tree } -->
 <!-- { img http://www.i-programmer.info/images/stories/BabBag/trees/Tree1.jpg Tree elements } -->
