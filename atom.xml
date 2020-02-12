@@ -25,7 +25,7 @@
     <content type="html"><![CDATA[<p>This post is the ultimate JavaScript Promises tutorial: recipes and examples for everyday situations (or that’s the goal 😉). We cover all the necessary methods like <code>then</code>, <code>catch</code>, and <code>finally</code>. Also, we go over more complex situations like executing promises in parallel with <code>Promise.all</code>, timing out APIs with <code>Promise.race</code>, promise chaining and some best practices and gotchas.</p>
 <a id="more"></a>
 
-<p><em>NOTE: I’d like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, comment below or reach out me directly <a href="https://twitter.com/amejiarosario" target="_blank" rel="noopener">@amejiarosario</a>. I’ll look into it and update this post.</em></p>
+<p><em>NOTE: I’d like this post to be up-to-date with the most common use cases for promises. If you have a question about promises and is not answered here. Please, comment below or reach out me directly <a href="https://twitter.com/iAmAdrianMejia" target="_blank" rel="noopener">@iAmAdrianMejia</a>. I’ll look into it and update this post.</em></p>
 <h1 id="JavaScript-Promises">JavaScript Promises<a href="#JavaScript-Promises" class="headerlink" title="JavaScript Promises"></a></h1><p>A promise is an object that allows you to handle asynchronous operations. It’s an alternative to plain old callbacks.</p>
 <p>Promises have many advantages over callbacks. To name a few:</p>
 <ul>
@@ -509,8 +509,8 @@ File size#3: 523 MB</code></pre><p>Wow! Totally random! 🤯</p>
 <a id="more"></a>
 
 <p>A 10,000-feet view description would be something like this:</p>
-<!-- https://twitter.com/amejiarosario/status/1127918275705413632 -->
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Finished creating my own system to sell ebooks! <a href="https://t.co/9w0DHBU8T8" target="_blank" rel="noopener">https://t.co/9w0DHBU8T8</a> It was harder than I thought but it was fun. When payments are completed, a webhook is sent to my server, which grabs the ebook PDF from S3. A <a href="https://twitter.com/hashtag/Node?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener">#Node</a> process stamp the document and uses API to send it by email</p>&mdash; Adrian.js (@amejiarosario) <a href="https://twitter.com/amejiarosario/status/1127918275705413632?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">May 13, 2019</a></blockquote>
+<!-- https://twitter.com/iAmAdrianMejia/status/1127918275705413632 -->
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Finished creating my own system to sell ebooks! <a href="https://t.co/9w0DHBU8T8" target="_blank" rel="noopener">https://t.co/9w0DHBU8T8</a> It was harder than I thought but it was fun. When payments are completed, a webhook is sent to my server, which grabs the ebook PDF from S3. A <a href="https://twitter.com/hashtag/Node?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener">#Node</a> process stamp the document and uses API to send it by email</p>&mdash; Adrian.js (@iAmAdrianMejia) <a href="https://twitter.com/iAmAdrianMejia/status/1127918275705413632?ref_src=twsrc%5Etfw" target="_blank" rel="noopener">May 13, 2019</a></blockquote>
 
 <p><strong>TL; DR:</strong> The e-Commerce site final stack is the following:</p>
 <ul>
@@ -4022,7 +4022,7 @@ we only need the biggest order term, thus <code>O(n)</code>.</p>
 <ul>
 <li>Line 2-3: 2 operations</li>
 <li>Line 5-6: double-loop of size n, so <code>n^2</code>.</li>
-<li>Line 7-13: has ~3 operations inside the double-</li>
+<li>Line 7-13: has ~3 operations inside the double-loop</li>
 </ul>
 <p>We get <code>3n^2 + 2</code>.</p>
 <p>Again, when we have an asymptotic analysis, we drop all constants and leave the most important term: <code>n^2</code>. So, in big O notation, it would be <code>O(n^2)</code>.</p>
@@ -4063,7 +4063,7 @@ Expand:
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findXYZ</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> solutions = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; n; x++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> y = <span class="number">0</span>; y &lt; n; y++) &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> z = <span class="number">0</span>; z &lt; n; z++) &#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="number">3</span>*x + <span class="number">9</span>*y + <span class="number">8</span>*z === <span class="number">79</span> ) &#123;</span><br><span class="line">          solutions.push(&#123;x, y, z&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> solutions;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findXYZ(<span class="number">10</span>)); <span class="comment">// =&gt; [&#123;x: 0, y: 7, z: 2&#125;, ...]</span></span><br></pre></td></tr></table></figure>
 
 <p>This algorithm has a cubic running time: <code>O(n^3)</code>.</p>
-<p><strong>Note:</strong> We could do a more efficient solution but did it this way to show an example of a cubic runtime.</p>
+<p><strong>Note:</strong> We could do a more efficient solution to solve multi-variable equations but this works for the purpose of showing an example of a cubic runtime.</p>
 <h1 id="O-log-n-Logarithmic-time">O(log n) - Logarithmic time<a href="#O-log-n-Logarithmic-time" class="headerlink" title="O(log n) - Logarithmic time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/cCPOayp1vek?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let’s say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If you are looking for a word, then there are at least two ways to do it:</p>
@@ -4074,7 +4074,7 @@ Expand:
 <p>Algorithm B:</p>
 <ol>
 <li>Open the book in the middle and check the first word on it.</li>
-<li>If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half. </li>
+<li>If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half.</li>
 <li>Divide the remainder in half again, and repeat step #2 until you find the word you are looking for.</li>
 </ol>
 <p>Which one is faster? The first algorithms go word by word <em>O(n)</em>, while the algorithm B split the problem in half on each iteration <em>O(log n)</em>. This 2nd algorithm is a <strong>binary search</strong>.</p>
@@ -4221,8 +4221,8 @@ This is how mergesort works:</p>
 <li>Fibonacci.</li>
 <li>Travelling salesman problem using dyanmic programming.</li>
 </ul>
-<h2 id="Power-Set">Power Set<a href="#Power-Set" class="headerlink" title="Power Set"></a></h2><p>To understand the power set, let’s imaging you are buying pizza. 
-The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pinapple.
+<h2 id="Power-Set">Power Set<a href="#Power-Set" class="headerlink" title="Power Set"></a></h2><p>To understand the power set, let’s imagine you are buying a pizza.
+The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pineapple.
 Let’s call each topping A, B, C, D. What are your choices? You can select no topping (you are on a diet ;), you can choose one topping, or two or three or all of them, and so on. The power set gives you all the possibilities (BTW, there 16 with 4 toppings as you will see later)</p>
 <p>Finding all distinct subsets of a given set. For instance, let’s do some examples to try to come up with an algorithm to solve it:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powerset(<span class="string">''</span>) <span class="comment">// =&gt;  ['']</span></span><br><span class="line">powerset(<span class="string">'a'</span>) <span class="comment">// =&gt; ['', 'a']</span></span><br><span class="line">powerset(<span class="string">'ab'</span>) <span class="comment">// =&gt; ['', 'a', 'b', 'ab']</span></span><br></pre></td></tr></table></figure>
@@ -5413,7 +5413,7 @@ In the following sections, you are going to learn how to do that using <code>exp
     <link href="https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/"/>
     <id>https://adrianmejia.com/List-tasks-in-npm-grunt-gulp-and-rake/</id>
     <published>2016-06-25T19:14:49.000Z</published>
-    <updated>2020-01-10T21:08:50.417Z</updated>
+    <updated>2020-02-12T19:34:51.908Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm run</span><br><span class="line">yarn run</span><br><span class="line">grunt --<span class="built_in">help</span></span><br><span class="line">gulp --tasks</span><br><span class="line">rake --tasks</span><br></pre></td></tr></table></figure>
 

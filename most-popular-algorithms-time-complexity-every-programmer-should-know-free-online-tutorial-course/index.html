@@ -300,7 +300,7 @@ ga('send', 'pageview');
       
         <span class="m-x-2" title="Pageviews">
           <i class="fa fa-eye" aria-hidden="true"></i>
-          96.1k
+          105.4k
         </span>
       
 
@@ -507,7 +507,7 @@ we only need the biggest order term, thus <code>O(n)</code>.</p>
 <ul>
 <li>Line 2-3: 2 operations</li>
 <li>Line 5-6: double-loop of size n, so <code>n^2</code>.</li>
-<li>Line 7-13: has ~3 operations inside the double-</li>
+<li>Line 7-13: has ~3 operations inside the double-loop</li>
 </ul>
 <p>We get <code>3n^2 + 2</code>.</p>
 <p>Again, when we have an asymptotic analysis, we drop all constants and leave the most important term: <code>n^2</code>. So, in big O notation, it would be <code>O(n^2)</code>.</p>
@@ -548,7 +548,7 @@ Expand:
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findXYZ</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> solutions = [];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> x = <span class="number">0</span>; x &lt; n; x++) &#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> y = <span class="number">0</span>; y &lt; n; y++) &#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> z = <span class="number">0</span>; z &lt; n; z++) &#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="number">3</span>*x + <span class="number">9</span>*y + <span class="number">8</span>*z === <span class="number">79</span> ) &#123;</span><br><span class="line">          solutions.push(&#123;x, y, z&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> solutions;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(findXYZ(<span class="number">10</span>)); <span class="comment">// =&gt; [&#123;x: 0, y: 7, z: 2&#125;, ...]</span></span><br></pre></td></tr></table></figure>
 
 <p>This algorithm has a cubic running time: <code>O(n^3)</code>.</p>
-<p><strong>Note:</strong> We could do a more efficient solution but did it this way to show an example of a cubic runtime.</p>
+<p><strong>Note:</strong> We could do a more efficient solution to solve multi-variable equations but this works for the purpose of showing an example of a cubic runtime.</p>
 <h1 id="O-log-n-Logarithmic-time">O(log n) - Logarithmic time<a href="#O-log-n-Logarithmic-time" class="headerlink" title="O(log n) - Logarithmic time"></a></h1><iframe width="560" height="315" src="https://www.youtube.com/embed/cCPOayp1vek?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <p>Logarithmic time complexities usually apply to algorithms that divide problems in half every time. For instance, let’s say that we want to look for a book in a dictionary. As you know, this book has every word sorted alphabetically. If you are looking for a word, then there are at least two ways to do it:</p>
@@ -559,7 +559,7 @@ Expand:
 <p>Algorithm B:</p>
 <ol>
 <li>Open the book in the middle and check the first word on it.</li>
-<li>If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half. </li>
+<li>If the word that you are looking for is alphabetically more significant, then look to the right. Otherwise, look in the left half.</li>
 <li>Divide the remainder in half again, and repeat step #2 until you find the word you are looking for.</li>
 </ol>
 <p>Which one is faster? The first algorithms go word by word <em>O(n)</em>, while the algorithm B split the problem in half on each iteration <em>O(log n)</em>. This 2nd algorithm is a <strong>binary search</strong>.</p>
@@ -706,8 +706,8 @@ This is how mergesort works:</p>
 <li>Fibonacci.</li>
 <li>Travelling salesman problem using dyanmic programming.</li>
 </ul>
-<h2 id="Power-Set">Power Set<a href="#Power-Set" class="headerlink" title="Power Set"></a></h2><p>To understand the power set, let’s imaging you are buying pizza. 
-The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pinapple.
+<h2 id="Power-Set">Power Set<a href="#Power-Set" class="headerlink" title="Power Set"></a></h2><p>To understand the power set, let’s imagine you are buying a pizza.
+The store has many toppings that you can choose from like pepperoni, mushrooms, bacon, and pineapple.
 Let’s call each topping A, B, C, D. What are your choices? You can select no topping (you are on a diet ;), you can choose one topping, or two or three or all of them, and so on. The power set gives you all the possibilities (BTW, there 16 with 4 toppings as you will see later)</p>
 <p>Finding all distinct subsets of a given set. For instance, let’s do some examples to try to come up with an algorithm to solve it:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powerset(<span class="string">''</span>) <span class="comment">// =&gt;  ['']</span></span><br><span class="line">powerset(<span class="string">'a'</span>) <span class="comment">// =&gt; ['', 'a']</span></span><br><span class="line">powerset(<span class="string">'ab'</span>) <span class="comment">// =&gt; ['', 'a', 'b', 'ab']</span></span><br></pre></td></tr></table></figure>
@@ -875,8 +875,8 @@ Let’s call each topping A, B, C, D. What are your choices? You can select no t
       Also, he likes to travel ✈️ and biking 🚴‍.
       <!-- Find out more <a href="/#about">here</a>. -->
     </p>
-    <!-- <p class="m-y-0"><a href="https://twitter.com/amejiarosario">Follow him on Twitter</a>.</p> -->
-    <a href="https://twitter.com/amejiarosario" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @amejiarosario</a>&nbsp;
+    <!-- <p class="m-y-0"><a href="https://twitter.com/iAmAdrianMejia">Follow him on Twitter</a>.</p> -->
+    <a href="https://twitter.com/iAmAdrianMejia" id="twitter-follow-button" class="twitter-follow-button" data-show-count="false">Follow @iAmAdrianMejia</a>&nbsp;
   </article>
 </section>
 
@@ -1136,8 +1136,8 @@ Let’s call each topping A, B, C, D. What are your choices? You can select no t
       <div class="container">
         <div class="p-y-2">
           &copy; 2020 <a href="http://adrianmejia.com">Adrian Mejia</a>
-          <span class="muted m-x-4" title="Fri Jan 10 2020 17:33:48 GMT-0500 (Eastern Standard Time)">
-            v.q3wxcc
+          <span class="muted m-x-4" title="Wed Feb 12 2020 14:41:14 GMT-0500 (Eastern Standard Time)">
+            v.q5ltcq
           </span>
         </div>
       </div>
